@@ -1,20 +1,222 @@
-import React from 'react';
-import Nav from "./components/Nav/index";
-import { Container, Row, Col } from "./components/Grid";
+import React, { Component } from "react";
+import { Container } from "./components/Grid";
 import Search from "./components/Search";
+import Results from './components/Results';
+import API from "./utils/API";
 
-function App() {
-  return (
-    <div>
-      <h1>SpeakEasy</h1>
-      <Nav />
+class App extends Component {
 
-      <Search />
+  state = {
+    search: "",
+    searchBy: "",
+    drinkArray: [],
+    error: ""
+  }
+
+  handleInputChange = event => {
+    this.setState({ search: event.target.value })
+  }
+
+  handleSelectChange = event => {
+    this.setState({ searchBy: event.target.value, drinkArray: [] })
+  }
 
 
-      <h3>hello world</h3>
-    </div>
-  );
+  handleFormSubmit = event => {
+    switch (this.state.searchBy) {
+      case "searchByName":
+        event.preventDefault();
+        API.searchByName(this.state.search)
+          .then((res) => {
+            console.log(res)
+            if (res.data.drinks === "error") {
+              throw new Error(res.data.drinks);
+            } else {
+              let results = res.data.drinks
+              results = results.map(result => {
+                //store each book information in a new object 
+                result = {
+                  key: result.idDrink,
+                  id: result.idDrink,
+                  title: result.strDrink,
+                  img: result.strDrinkThumb,
+                  instructions: result.strInstructions,
+                  ingredient1: result.strIngredient1,
+                  ingredient2: result.strIngredient2,
+                  ingredient3: result.strIngredient3,
+                  ingredient4: result.strIngredient4,
+                  ingredient5: result.strIngredient5,
+                  ingredient6: result.strIngredient6,
+                  ingredient7: result.strIngredient7,
+                  ingredient8: result.strIngredient8,
+                  ingredient9: result.strIngredient9,
+                  ingredient10: result.strIngredient10,
+                  measure1: result.strMeasure1,
+                  measure2: result.strMeasure2,
+                  measure3: result.strMeasure3,
+                  measure4: result.strMeasure4,
+                  measure5: result.strMeasure5,
+                  measure6: result.strMeasure6,
+                  measure7: result.strMeasure7,
+                  measure8: result.strMeasure8,
+                  measure9: result.strMeasure9,
+                  measure10: result.strMeasure10
+
+                }
+                return result;
+              })
+              this.setState({ drinkArray: results, error: "" })
+
+            }
+          })
+          .catch(err => this.setState({ error: err.items }));
+        console.log(this.state.drinkArray)
+        break;
+
+      case "searchIngredientByName":
+        event.preventDefault();
+        API.searchIngredientByName(this.state.search)
+          .then((res) => {
+            console.log(res)
+            if (res.data.ingredients === "error") {
+              throw new Error(res.data.ingredients);
+            } else {
+              let results = res.data.ingredients
+              results = results.map(result => {
+                //store each book information in a new object 
+                result = {
+                  key: result.idIngredient,
+                  id: result.idIngredient,
+                  title: result.strIngredient,
+                  description: result.strDescription
+                }
+                return result;
+              })
+              this.setState({ drinkArray: results, error: "" })
+
+            }
+          })
+          .catch(err => this.setState({ error: err.items }));
+        console.log(this.state.drinkArray)
+        break;
+
+      case "searchByIngredient":
+        event.preventDefault();
+        API.searchByIngredient(this.state.search)
+          .then((res) => {
+            console.log(res)
+            if (res.data.drinks === "error") {
+              throw new Error(res.data.drinks);
+            } else {
+              let results = res.data.drinks
+              results = results.map(result => {
+                //store each book information in a new object 
+
+                result = {
+                  key: result.idDrink,
+                  id: result.idDrink,
+                  title: result.strDrink,
+                  img: result.strDrinkThumb,
+                  instructions: result.strInstructions,
+                  ingredient1: result.strIngredient1,
+                  ingredient2: result.strIngredient2,
+                  ingredient3: result.strIngredient3,
+                  ingredient4: result.strIngredient4,
+                  ingredient5: result.strIngredient5,
+                  ingredient6: result.strIngredient6,
+                  ingredient7: result.strIngredient7,
+                  ingredient8: result.strIngredient8,
+                  ingredient9: result.strIngredient9,
+                  ingredient10: result.strIngredient10,
+                  measure1: result.strMeasure1,
+                  measure2: result.strMeasure2,
+                  measure3: result.strMeasure3,
+                  measure4: result.strMeasure4,
+                  measure5: result.strMeasure5,
+                  measure6: result.strMeasure6,
+                  measure7: result.strMeasure7,
+                  measure8: result.strMeasure8,
+                  measure9: result.strMeasure9,
+                  measure10: result.strMeasure10
+                }
+                return result;
+              })
+              this.setState({ drinkArray: results, error: "" })
+
+            }
+          })
+          .catch(err => this.setState({ error: err.items }));
+        console.log(this.state.drinkArray)
+        break;
+
+      case "random":
+        event.preventDefault();
+        API.random()
+          .then((res) => {
+            console.log(res)
+            if (res.data.drinks === "error") {
+              throw new Error(res.data.drinks);
+            } else {
+              let results = res.data.drinks
+              results = results.map(result => {
+                //store each book information in a new object 
+                result = {
+                  key: result.idDrink,
+                  id: result.idDrink,
+                  title: result.strDrink,
+                  img: result.strDrinkThumb,
+                  instructions: result.strInstructions,
+                  ingredient1: result.strIngredient1,
+                  ingredient2: result.strIngredient2,
+                  ingredient3: result.strIngredient3,
+                  ingredient4: result.strIngredient4,
+                  ingredient5: result.strIngredient5,
+                  ingredient6: result.strIngredient6,
+                  ingredient7: result.strIngredient7,
+                  ingredient8: result.strIngredient8,
+                  ingredient9: result.strIngredient9,
+                  ingredient10: result.strIngredient10,
+                  measure1: result.strMeasure1,
+                  measure2: result.strMeasure2,
+                  measure3: result.strMeasure3,
+                  measure4: result.strMeasure4,
+                  measure5: result.strMeasure5,
+                  measure6: result.strMeasure6,
+                  measure7: result.strMeasure7,
+                  measure8: result.strMeasure8,
+                  measure9: result.strMeasure9,
+                  measure10: result.strMeasure10
+                }
+                return result;
+              })
+              this.setState({ drinkArray: results, error: "" })
+            }
+          })
+          .catch(err => this.setState({ error: err.items }));
+        console.log(this.state.drinkArray)
+        break;
+
+      default:
+
+        break;
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <h1 className="text-center"><b>SpeakEasy</b></h1>
+
+        <Search handleFormSubmit={this.handleFormSubmit} handleInputChange={this.handleInputChange} handleSelectChange={this.handleSelectChange} />
+
+        <Container>
+          <Results drinks={this.state.drinkArray} searchBy={this.state.searchBy} />
+        </Container>
+
+      </div >
+    );
+  }
 }
+
 
 export default App;
