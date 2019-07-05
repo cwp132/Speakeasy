@@ -1,9 +1,10 @@
 
 
 function login() {
+
     var passport = require('passport')
         , LocalStrategy = require('passport-local').Strategy;
-
+    var db = require("./models");
     const express = require("express");
     const app = express();
     var session = require("express-session"),
@@ -26,7 +27,7 @@ function login() {
                     console.log("incorrect user")
                     return done(null, false, { message: 'Incorrect username.' });
                 }
-                if (user.password != password) {
+                if (user.password !== password) {
                     console.log("wrong")
                     return done(null, false, { message: 'Incorrect password.' });
                 }
@@ -41,7 +42,7 @@ function login() {
     });
 
     passport.deserializeUser(function (id, done) {
-        User.findById(id, function (err, user) {
+        db.User.findById(id, function (err, user) {
             done(err, user);
         });
     });

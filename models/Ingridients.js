@@ -13,7 +13,7 @@ var IngridientSchema = new Schema({
     }]
 });
 // This creates our model from the above schema, using mongoose's model method
-var Ingridient = mongoose.model("Ingridients", IngridientSchema);
+var Ingridient = mongoose.model("Drinks", IngridientSchema);
 
 // Export the User model
 module.exports = Ingridient;
