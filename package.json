@@ -1,34 +1,27 @@
 {
   "name": "speakeasy",
-  "version": "1.0.0",
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:3002",
   "dependencies": {
     "axios": "^0.19.0",
+    "express-session": "^1.16.2",
+    "mongoose": "^5.6.3",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "^3.0.1"
+    "react-scripts": "3.0.1"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cwp132/Speakeasy.git"
+  "eslintConfig": {
+    "extends": "react-app"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/cwp132/Speakeasy/issues"
-  },
-  "homepage": "https://github.com/cwp132/Speakeasy#readme",
   "browserslist": {
     "production": [
       ">0.2%",
