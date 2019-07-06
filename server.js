@@ -44,6 +44,7 @@ passport.use(new LocalStrategy(
                 return done(null, false, { message: 'Incorrect password.' });
             }
             console.log("success");
+            console.log(user);
             return done(null, user);
         });
     }
@@ -61,14 +62,37 @@ passport.deserializeUser(function (id, done) {
 
 
 
+
 app.post('/login',
-    passport.authenticate('local', { failureRedirect: '/login' }),
+    passport.authenticate('local', { failureRedirect: '/logins' }),
     function (req, res) {
-        console.log("====================")
-        console.log(req.user);
-        console.log("==================== \n")
-        res.redirect('/');
+        console.log("====================");
+
+        console.log("==================== \n");
+        res.redirect("/");
+        // var session1 = res.json(session);
+        // console.log(session1);
     });
+
+app.get('/logout', (request, response) => {
+    console.log("logging out......")
+    request.logout();
+    response.redirect('/asdfgh');
+    console.log(request.user);
+});
+
+// function isLoggedIn(request, response, next) {
+//     // passport adds this to the request object
+//     if (request.isAuthenticated()) {
+//         return next();
+//     }
+//     response.redirect('/login');
+// }
+
+// app.get('/login', isLoggedIn, (request, response) => {
+//     // console.log(request);
+//     console.log(response);
+// });
 
 app.get('/express_backend', (req, res) => {
     res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
