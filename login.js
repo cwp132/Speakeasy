@@ -1,5 +1,3 @@
-
-
 function login() {
 
     var passport = require('passport')

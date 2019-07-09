@@ -5,6 +5,7 @@ import Search from "./components/Search";
 import Results from './components/Results';
 import API from "./utils/API";
 import Nav from "./components/Nav";
+import axios from 'axios';
 
 class App extends Component {
 
@@ -12,7 +13,26 @@ class App extends Component {
     search: "",
     searchBy: "",
     drinkArray: [],
-    error: ""
+    error: "",
+    isloggedIn: false
+  }
+
+  isLoggedIn = () => {
+    axios.get('/isLogged')
+      .then(function (req, res) {
+        // console.log(req.user);
+        console.log("=============")
+        if (req.user !== null || undefined) {
+          this.setState({ isLoggedIn: true });
+          console.log(this.state.isLoggedIn);
+        } else {
+          this.setState({ isLoggedIn: false })
+        }
+        console.log(this.state.isLoggedIn)
+      })
+      .catch(function (err) {
+        console.log(err);
+      })
   }
 
   handleInputChange = event => {
@@ -255,7 +275,7 @@ class App extends Component {
     return (
       <div>
 
-        <Nav />
+        <Nav isLoggedIn={this.state.isLoggedIn} />
         <h1 className="text-center m-5"><b>SpeakEasy</b></h1>
 
         <Search handleFormSubmit={this.handleFormSubmit} handleInputChange={this.handleInputChange} handleSelectChange={this.handleSelectChange} />
