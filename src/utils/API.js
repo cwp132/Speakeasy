@@ -12,6 +12,9 @@ export default {
   },
   random: function () {
     return axios.get("https://www.thecocktaildb.com/api/json/v2/8673533/random.php");
+  },
+  favorites: function (query) {
+    return axios.get("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + query);
   }
 
 }
