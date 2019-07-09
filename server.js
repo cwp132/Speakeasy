@@ -44,7 +44,7 @@ passport.use(new LocalStrategy(
                 return done(null, false, { message: 'Incorrect password.' });
             }
             console.log("success");
-            console.log(user);
+            // console.log(user);
             return done(null, user);
         });
     }
@@ -60,18 +60,26 @@ passport.deserializeUser(function (id, done) {
     });
 });
 
+app.post('/create', function (req, res) {
+    console.log(req.body);
+    db.User.create({ user_name: req.body.username, password: req.body.password })
+        .then(function (req, res) {
+            console.log(req);
+        })
+        .catch(function (err) {
+            console.log(err);
+        })
+})
 
-
+app.get('/isLogged', (req, res) => {
+    res.send(req.user);
+    // console.log(req.user);
+})
 
 app.post('/login',
     passport.authenticate('local', { failureRedirect: '/logins' }),
     function (req, res) {
-        console.log("====================");
-
-        console.log("==================== \n");
         res.redirect("/");
-        // var session1 = res.json(session);
-        // console.log(session1);
     });
 
 app.get('/logout', (request, response) => {
