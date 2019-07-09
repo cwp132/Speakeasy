@@ -14,7 +14,6 @@ class App extends Component {
     searchBy: "",
     drinkArray: [],
     error: "",
-    isloggedIn: false
   }
 
   isLoggedIn = () => {
@@ -275,7 +274,7 @@ class App extends Component {
     return (
       <div>
 
-        <Nav isLoggedIn={this.state.isLoggedIn} />
+        <Nav />
         <h1 className="text-center m-5"><b>SpeakEasy</b></h1>
 
         <Search handleFormSubmit={this.handleFormSubmit} handleInputChange={this.handleInputChange} handleSelectChange={this.handleSelectChange} />

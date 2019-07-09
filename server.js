@@ -102,9 +102,9 @@ app.get('/logout', (request, response) => {
 //     console.log(response);
 // });
 
-app.get('/express_backend', (req, res) => {
-    res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
-});
+// app.get('/express_backend', (req, res) => {
+//     res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
+// });
 
 // Start the API server
 app.listen(PORT, function () {
