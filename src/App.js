@@ -206,6 +206,8 @@ class App extends Component {
   render() {
     return (
       <div>
+      
+      <Nav />
         <h1 className="text-center m-5"><b>SpeakEasy</b></h1>
 
         <Search handleFormSubmit={this.handleFormSubmit} handleInputChange={this.handleInputChange} handleSelectChange={this.handleSelectChange} />
