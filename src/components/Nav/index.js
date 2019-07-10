@@ -33,6 +33,10 @@ class Nav extends React.Component {
       })
   }
 
+  handleClick() {
+    window.location.reload();
+  }
+
   // isLoggedIn = () => {
   //   axios.get('/isLogged')
   //     .then(function (req, res) {
