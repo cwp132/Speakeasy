@@ -1,7 +1,6 @@
 import React from "react";
 import axios from 'axios';
 class Nav extends React.Component {
-  state = { isloggedIn: false };
 
   // This binding is necessary to make `this` work in the callback
   // this.handleClick = this.handleClick.bind(this);
@@ -18,9 +17,11 @@ class Nav extends React.Component {
       })
   }
 
+
   getUser = (event) => {
     // Make a request for a user with a given ID
     event.preventDefault();
+
     axios.get('/login')
       .then(function (res, req) {
 
@@ -65,7 +66,9 @@ class Nav extends React.Component {
               Log In
             </button>
 
-            <button type="button" onClick={this.isLoggedIn} className="btn btn-info float-right">
+
+         <button type="button" onClick={this.isLoggedIn} className="btn btn-info float-right">
+
               Check log status
             </button>
 
