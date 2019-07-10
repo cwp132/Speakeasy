@@ -20,6 +20,7 @@ function Search(props) {
                     <option value="searchIngredientByName">Search Ingrediant by Name</option>
                     <option value="searchByIngredient">Search by Ingrediant</option>
                     <option value="random">Random</option>
+                    <option value="favorites">Favorites</option>
                   </select>
                 </div>
               </div>
