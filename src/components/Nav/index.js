@@ -4,7 +4,9 @@ class Nav extends React.Component {
 
   // This binding is necessary to make `this` work in the callback
   // this.handleClick = this.handleClick.bind(this);
-
+  state = {
+    logged: 0
+  }
 
   logOut = (event) => {
     event.preventDefault();
@@ -17,6 +19,11 @@ class Nav extends React.Component {
       })
   }
 
+
+
+  handleClick(event) {
+
+  };
 
   getUser = (event) => {
     // Make a request for a user with a given ID
@@ -33,22 +40,9 @@ class Nav extends React.Component {
       })
   }
 
-  // isLoggedIn = () => {
-  //   axios.get('/isLogged')
-  //     .then(function (req, res) {
-  //       // console.log(req.user);
-  //       console.log("=============")
-  //       if (req.user !== null || undefined) {
-  //         this.setState({ isLoggedIn: true });
-  //         console.log(this.state.isLoggedIn);
-  //       } else {
-  //         this.setState({ isLoggedIn: false })
-  //       }
-  //     })
-  //     .catch(function (err) {
-  //       console.log(err);
-  //     })
-  // }
+  isLoggedIn = () => {
+    this.
+  }
 
   render() {
 
@@ -60,12 +54,6 @@ class Nav extends React.Component {
           <li className="nav-item">
             <button type="button" className="btn btn-info float-right" data-toggle="modal" data-target="#loginModal">
               Log In
-            </button>
-
-
-         <button type="button" onClick={this.isLoggedIn} className="btn btn-info float-right">
-
-              Check log status
             </button>
 
             <button type="button" onClick={this.logOut} id="logout" className="btn btn-info float-right" >
