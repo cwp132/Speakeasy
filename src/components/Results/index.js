@@ -11,7 +11,7 @@ class Results extends Component {
     switch (this.props.searchBy) {
       case "searchByName":
         return <div className="row">
-          {this.props.drinks.map((drink) => {
+          {this.props.drinks.map((drink, index) => {
             return (
               <Drink drink={drink} key={drink.id} />
             )
@@ -19,7 +19,7 @@ class Results extends Component {
         </div>
       case "searchByIngredient":
         return <div className="row">
-          {this.props.drinks.map((drink) => {
+          {this.props.drinks.map((drink, index) => {
             return (
               <Drink drink={drink} key={drink.id} />
             )
@@ -28,9 +28,9 @@ class Results extends Component {
 
       case "searchIngredientByName":
         return <div className="row">
-          {this.props.drinks.map((drink) => {
+          {this.props.drinks.map((drink, index) => {
             return (
-              <div className="col-lg-12 col-md-12 col-sm-12 p-3" id={drink.id} key={drink.id}>
+              <div className="col-lg-12 col-md-12 col-sm-12 p-3" id={drink.id} key={index}>
                 <h4 className="text-center">{drink.title}</h4>
                 <p>{drink.description}</p>
               </div>
@@ -40,45 +40,27 @@ class Results extends Component {
 
       case "random":
         return <div className="row">
-          {this.props.drinks.map((drink) => {
+          {this.props.drinks.map((drink, index) => {
             return (
               <Drink drink={drink} key={drink.id} />
             )
           })}
 
-        </div>
+      </div>
 
-      default:
-        return <div className="col-md-12 text-center">
-          <h1>Search for some Great Drinks!</h1>
-        </div>
-    }
-
-    // case "favorites":
-    //   return <div className="row">
-    //     {props.drinks.map((drink, index) => {
-    //       return (
-    //         <div className="col-lg-4 col-md-6 col-sm-12 p-3" id={drink.id} key={index}>
-    //           <h4 className="text-center">{drink.title}</h4>
-    //           <div className="d-flex justify-content-center">
-    //             <img src={drink.img} alt={drink.title} />
-    //           </div>
-    //         </div>
-    //       )
-    //     })}
-    //   </div>
-    // default:
-    //   return <div className="col-md-12 text-center">
-    //     <h1>Search for some Great Drinks!</h1>
-    //   </div>
-
+    case "favorites":
+      return <div className="row">
+        {props.drinks.map((drink, index) => {
+          return (
+              <Drink drink={drink} key={drink.id} />
+            )
+        })}
+      </div>
+    default:
+      return <div className="col-md-12 text-center">
+        <h1>Search for some Great Drinks!</h1>
+      </div>
 
   }
 }
 export default Results
-  //     </div >
-  // < input id = "search" ></input >
-  //   <button onClick={() => this.searchDatabase(document.getElementById("search").value)}>button</button>
-  //   <div className="drinks">
-  //     <this.drinkRenderer />
-  //   </div>
