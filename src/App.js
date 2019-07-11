@@ -5,7 +5,7 @@ import Search from "./components/Search";
 import Results from './components/Results';
 import API from "./utils/API";
 import Nav from "./components/Nav";
-// import axios from 'axios';
+import axios from 'axios';
 
 class App extends Component {
 
@@ -17,6 +17,44 @@ class App extends Component {
     // searchedInfo: [],
     error: ""
   }
+
+  // handleData = event => {
+  //   this.setState({ searchedDrink: event.target.alt })
+  //   console.log(this.state.searchedDrink)
+  //   event.preventDefault();
+  //   API.searchByName(this.state.searchedDrink)
+  //     .then((res) => {
+  //       console.log(res)
+  //       if (res.data.drinks === "error") {
+  //         throw new Error(res.data.drinks);
+  //       } else {
+  //         let results = res.data.drinks
+  //         results = results.map(result => {
+  //           //store each book information in a new object 
+  //           result = {
+  //             id: result.idDrink,
+  //             title: result.strDrink,
+  //             img: result.strDrinkThumb,
+  //             instructions: result.strInstructions,
+  //             ingredientsArr: [result.strIngredient1, result.strIngredient2, result.strIngredient3, result.strIngredient4,
+  //             result.strIngredient5, result.strIngredient6, result.strIngredient7, result.strIngredient8, result.strIngredient9,
+  //             result.strIngredient10],
+  //             measureArr: [result.strMeasure1, result.strMeasure2, result.strMeasure3, result.strMeasure4,
+  //             result.strMeasure5, result.strMeasure6, result.strMeasure7, result.strMeasure8, result.strMeasure9,
+  //             result.strIngredient10]
+  //           }
+  //           return result;
+  //         })
+  //         this.setState({ searchedInfo: results, error: "" })
+
+  //       }
+  //     })
+  //     .catch(err => this.setState({ error: err.items }));
+
+  //   //if the state matches the event.arget.value no search is needed
+
+  //   // else if state does not match event target hit the api
+  // }
 
   isLoggedIn = () => {
     axios.get('/isLogged')
@@ -223,8 +261,9 @@ class App extends Component {
         <Nav />
 
         <h1 className="text-center m-5"><b>SpeakEasy</b></h1>
-
-        <Search handleFormSubmit={this.handleFormSubmit} handleInputChange={this.handleInputChange} handleSelectChange={this.handleSelectChange} />
+        <Container>
+          <Search handleFormSubmit={this.handleFormSubmit} handleInputChange={this.handleInputChange} handleSelectChange={this.handleSelectChange} />
+        </Container>
 
         <Container>
           <Results drinks={this.state.drinkArray} searchBy={this.state.searchBy} />

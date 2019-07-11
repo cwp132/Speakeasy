@@ -1,4 +1,5 @@
 import React from 'react';
+import "./style.css";
 
 function Drink(props) {
 
@@ -10,7 +11,7 @@ function Drink(props) {
 
         <div className={`modal fade modal-${props.drink.id}`} tabIndex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
           <div className="modal-dialog modal-xl">
-            <div className="modal-content">
+            <div className="modal-content p-4">
               <div className="container">
                 <div className="row">
                   <div className="col-md-12">
@@ -18,22 +19,56 @@ function Drink(props) {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-md-4 d-flex justify-content-center">
+                  <div className="col-md-3 d-flex justify-content-center">
                     <img src={props.drink.img} alt={props.drink.title} />
                   </div>
 
-                  <div className="col-md-4 d-flex justify-content-center">
-                    <ul>
-                      {props.drink.ingredientsArr.map((ingredient) => {
-                        return (
-                          <li>{ingredient}</li>
-                        )
-                      })}
-                    </ul>
+                  <div className="col-md-3">
+                    <div className="row">
+                      <h4>Ingredients</h4>
+                    </div>
+                    <div className="row">
+                      <ul>
+                        {props.drink.ingredientsArr.map((ingredient, index) => {
+                          if (ingredient === "") {
+                            return (<></>)
+                          } else {
+                            return (
+                              <li key={index}> {ingredient}</li>
+                            )
+                          }
+                        })}
+                      </ul>
+                    </div>
 
                   </div>
 
-                  <div className="col-md-4 d-flex justify-content-center">
+
+                  <div className="col-md-3">
+                    <div className="row">
+                      <h4>Measurements</h4>
+                    </div>
+                    <div className="row">
+                      <ul id="measureList">
+                        {props.drink.measureArr.map((measure, index) => {
+                          if (measure === " ") {
+                            return (<></>)
+                          } else if (measure === "↵") {
+                            return (<></>)
+                          } else if (measure === "") {
+                            return (<></>)
+                          } else {
+                            return (
+                              <li key={index}>{measure}</li>
+                            )
+                          }
+
+                        })}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="col-md-3 d-flex justify-content-center">
                     <p>{props.drink.instructions}</p>
                   </div>
 
