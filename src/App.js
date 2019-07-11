@@ -5,7 +5,7 @@ import Search from "./components/Search";
 import Results from './components/Results';
 import API from "./utils/API";
 import Nav from "./components/Nav";
-import axios from 'axios';
+// import axios from 'axios';
 
 class App extends Component {
 
@@ -13,7 +13,9 @@ class App extends Component {
     search: "",
     searchBy: "",
     drinkArray: [],
-    error: "",
+    // searchedDrink: "",
+    // searchedInfo: [],
+    error: ""
   }
 
   isLoggedIn = () => {
@@ -62,27 +64,12 @@ class App extends Component {
                   title: result.strDrink,
                   img: result.strDrinkThumb,
                   instructions: result.strInstructions,
-                  ingredientsArr: [result.strIngredient1, result.strIngredient2, result.strIngredient3, result.strIngredient4, result.strIngredient5,],
-                  // ingredient2: result.strIngredient2,
-                  // ingredient3: result.strIngredient3,
-                  // ingredient4: result.strIngredient4,
-                  // ingredient5: result.strIngredient5,
-                  // ingredient6: result.strIngredient6,
-                  // ingredient7: result.strIngredient7,
-                  // ingredient8: result.strIngredient8,
-                  // ingredient9: result.strIngredient9,
-                  // ingredient10: result.strIngredient10,
-                  measure1: result.strMeasure1,
-                  measure2: result.strMeasure2,
-                  measure3: result.strMeasure3,
-                  measure4: result.strMeasure4,
-                  measure5: result.strMeasure5,
-                  measure6: result.strMeasure6,
-                  measure7: result.strMeasure7,
-                  measure8: result.strMeasure8,
-                  measure9: result.strMeasure9,
-                  measure10: result.strMeasure10
-
+                  ingredientsArr: [result.strIngredient1, result.strIngredient2, result.strIngredient3, result.strIngredient4,
+                  result.strIngredient5, result.strIngredient6, result.strIngredient7, result.strIngredient8, result.strIngredient9,
+                  result.strIngredient10],
+                  measureArr: [result.strMeasure1, result.strMeasure2, result.strMeasure3, result.strMeasure4,
+                  result.strMeasure5, result.strMeasure6, result.strMeasure7, result.strMeasure8, result.strMeasure9,
+                  result.strIngredient10]
                 }
                 return result;
               })
@@ -139,26 +126,12 @@ class App extends Component {
                   title: result.strDrink,
                   img: result.strDrinkThumb,
                   instructions: result.strInstructions,
-                  ingredientsArr: [result.strIngredient1, result.strIngredient2, result.strIngredient3],
-                  // ingredient2: result.strIngredient2,
-                  // ingredient3: result.strIngredient3,
-                  // ingredient4: result.strIngredient4,
-                  // ingredient5: result.strIngredient5,
-                  // ingredient6: result.strIngredient6,
-                  // ingredient7: result.strIngredient7,
-                  // ingredient8: result.strIngredient8,
-                  // ingredient9: result.strIngredient9,
-                  // ingredient10: result.strIngredient10,
-                  measure1: result.strMeasure1,
-                  measure2: result.strMeasure2,
-                  measure3: result.strMeasure3,
-                  measure4: result.strMeasure4,
-                  measure5: result.strMeasure5,
-                  measure6: result.strMeasure6,
-                  measure7: result.strMeasure7,
-                  measure8: result.strMeasure8,
-                  measure9: result.strMeasure9,
-                  measure10: result.strMeasure10
+                  ingredientsArr: [result.strIngredient1, result.strIngredient2, result.strIngredient3, result.strIngredient4,
+                  result.strIngredient5, result.strIngredient6, result.strIngredient7, result.strIngredient8, result.strIngredient9,
+                  result.strIngredient10],
+                  measureArr: [result.strMeasure1, result.strMeasure2, result.strMeasure3, result.strMeasure4,
+                  result.strMeasure5, result.strMeasure6, result.strMeasure7, result.strMeasure8, result.strMeasure9,
+                  result.strIngredient10]
                 }
                 return result;
               })
@@ -187,26 +160,12 @@ class App extends Component {
                   title: result.strDrink,
                   img: result.strDrinkThumb,
                   instructions: result.strInstructions,
-                  ingredient1: result.strIngredient1,
-                  ingredient2: result.strIngredient2,
-                  ingredient3: result.strIngredient3,
-                  ingredient4: result.strIngredient4,
-                  ingredient5: result.strIngredient5,
-                  ingredient6: result.strIngredient6,
-                  ingredient7: result.strIngredient7,
-                  ingredient8: result.strIngredient8,
-                  ingredient9: result.strIngredient9,
-                  ingredient10: result.strIngredient10,
-                  measure1: result.strMeasure1,
-                  measure2: result.strMeasure2,
-                  measure3: result.strMeasure3,
-                  measure4: result.strMeasure4,
-                  measure5: result.strMeasure5,
-                  measure6: result.strMeasure6,
-                  measure7: result.strMeasure7,
-                  measure8: result.strMeasure8,
-                  measure9: result.strMeasure9,
-                  measure10: result.strMeasure10
+                  ingredientsArr: [result.strIngredient1, result.strIngredient2, result.strIngredient3, result.strIngredient4,
+                  result.strIngredient5, result.strIngredient6, result.strIngredient7, result.strIngredient8, result.strIngredient9,
+                  result.strIngredient10],
+                  measureArr: [result.strMeasure1, result.strMeasure2, result.strMeasure3, result.strMeasure4,
+                  result.strMeasure5, result.strMeasure6, result.strMeasure7, result.strMeasure8, result.strMeasure9,
+                  result.strIngredient10]
                 }
                 return result;
               })
@@ -234,26 +193,12 @@ class App extends Component {
                   title: result.strDrink,
                   img: result.strDrinkThumb,
                   instructions: result.strInstructions,
-                  ingredient1: result.strIngredient1,
-                  ingredient2: result.strIngredient2,
-                  ingredient3: result.strIngredient3,
-                  ingredient4: result.strIngredient4,
-                  ingredient5: result.strIngredient5,
-                  ingredient6: result.strIngredient6,
-                  ingredient7: result.strIngredient7,
-                  ingredient8: result.strIngredient8,
-                  ingredient9: result.strIngredient9,
-                  ingredient10: result.strIngredient10,
-                  measure1: result.strMeasure1,
-                  measure2: result.strMeasure2,
-                  measure3: result.strMeasure3,
-                  measure4: result.strMeasure4,
-                  measure5: result.strMeasure5,
-                  measure6: result.strMeasure6,
-                  measure7: result.strMeasure7,
-                  measure8: result.strMeasure8,
-                  measure9: result.strMeasure9,
-                  measure10: result.strMeasure10
+                  ingredientsArr: [result.strIngredient1, result.strIngredient2, result.strIngredient3, result.strIngredient4,
+                  result.strIngredient5, result.strIngredient6, result.strIngredient7, result.strIngredient8, result.strIngredient9,
+                  result.strIngredient10],
+                  measureArr: [result.strMeasure1, result.strMeasure2, result.strMeasure3, result.strMeasure4,
+                  result.strMeasure5, result.strMeasure6, result.strMeasure7, result.strMeasure8, result.strMeasure9,
+                  result.strIngredient10]
                 }
                 return result;
               })
