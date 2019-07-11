@@ -46,21 +46,22 @@ class Results extends Component {
             )
           })}
 
-      </div>
+        </div>
 
-    case "favorites":
-      return <div className="row">
-        {props.drinks.map((drink, index) => {
-          return (
+      case "favorites":
+        return <div className="row">
+          {this.props.drinks.map((drink, index) => {
+            return (
               <Drink drink={drink} key={drink.id} />
             )
-        })}
-      </div>
-    default:
-      return <div className="col-md-12 text-center">
-        <h1>Search for some Great Drinks!</h1>
-      </div>
+          })}
+        </div>
+      default:
+        return <div className="col-md-12 text-center">
+          <h1>Search for some Great Drinks!</h1>
+        </div>
 
+    }
   }
 }
 export default Results
