@@ -54,26 +54,23 @@ class Results extends Component {
         </div>
     }
 
-
-      </div>
-
-    case "favorites":
-      return <div className="row">
-        {props.drinks.map((drink, index) => {
-          return (
-            <div className="col-lg-4 col-md-6 col-sm-12 p-3" id={drink.id} key={index}>
-              <h4 className="text-center">{drink.title}</h4>
-              <div className="d-flex justify-content-center">
-                <img src={drink.img} alt={drink.title} />
-              </div>
-            </div>
-          )
-        })}
-      </div>
-    default:
-      return <div className="col-md-12 text-center">
-        <h1>Search for some Great Drinks!</h1>
-      </div>
+    // case "favorites":
+    //   return <div className="row">
+    //     {props.drinks.map((drink, index) => {
+    //       return (
+    //         <div className="col-lg-4 col-md-6 col-sm-12 p-3" id={drink.id} key={index}>
+    //           <h4 className="text-center">{drink.title}</h4>
+    //           <div className="d-flex justify-content-center">
+    //             <img src={drink.img} alt={drink.title} />
+    //           </div>
+    //         </div>
+    //       )
+    //     })}
+    //   </div>
+    // default:
+    //   return <div className="col-md-12 text-center">
+    //     <h1>Search for some Great Drinks!</h1>
+    //   </div>
 
 
   }

@@ -5,7 +5,7 @@ import Search from "./components/Search";
 import Results from './components/Results';
 import API from "./utils/API";
 import Nav from "./components/Nav";
-import axios from 'axios';
+// import axios from 'axios';
 
 class App extends Component {
 
@@ -17,7 +17,7 @@ class App extends Component {
     // searchedDrink: "",
     // searchedInfo: [],
     error: ""
-  
+
   }
 
   // handleData = event => {
@@ -267,7 +267,7 @@ class App extends Component {
           <Results drinks={this.state.drinkArray} searchBy={this.state.searchBy} handleData={this.handleData} drinkInfo={this.state.searchInfo} />
         </Container>
 
-      </ >
+      </div >
     );
   }
 }
