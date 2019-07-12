@@ -1,11 +1,13 @@
 import React from "react";
 import axios from 'axios';
 class Nav extends React.Component {
-
-  // This binding is necessary to make `this` work in the callback
-  // this.handleClick = this.handleClick.bind(this);
-  state = {
-    logged: 0
+  constructor(props) {
+    super(props)
+    this.state = {
+      logged: "",
+      logOut: "hidden",
+    }
+    this.checkState = this.checkState.bind(this);
   }
 
   logOut = (event) => {
@@ -19,20 +21,27 @@ class Nav extends React.Component {
       })
   }
 
+  // handleClick(event) {
+  //   this.checkState();
+  // };
+
+  componentDidMount = (e) => {
+    this.checkState();
+  }
 
 
-  handleClick(event) {
 
-  };
-
-  getUser = (event) => {
-    // Make a request for a user with a given ID
-    event.preventDefault();
-
-    axios.get('/login')
-      .then(function (res, req) {
-
-        console.log(req.session);
+  checkState = (e) => {
+    axios.get('/logged')
+      .then((req, res) => {
+        if (req.data !== "") {
+          console.log("State should change")
+          console.log(req.data);
+          this.setState({ logged: "hidden", logOut: "" });
+        } else {
+          console.log('not logged')
+        }
+        // console.log(req.data);
       })
       .catch(function (error) {
         // handle error
@@ -40,9 +49,9 @@ class Nav extends React.Component {
       })
   }
 
-  isLoggedIn = () => {
-    this.
-  }
+  // getUser = (event) => {
+
+  // }
 
   render() {
 
@@ -52,17 +61,25 @@ class Nav extends React.Component {
         <ul className="nav">
 
           <li className="nav-item">
-            <button type="button" className="btn btn-info float-right" data-toggle="modal" data-target="#loginModal">
+            <button type="button" hidden={this.state.logged} className="btn btn-info float-right" data-toggle="modal" data-target="#loginModal">
               Log In
             </button>
 
-            <button type="button" onClick={this.logOut} id="logout" className="btn btn-info float-right" >
+            <button type="button" onClick={this.logOut} hidden={this.state.logOut} id="logout" className="btn btn-info float-right" >
               log out
             </button>
 
-            <button type="button" className="btn btn-info float-right" data-toggle="modal" data-target="#createModal">
+            <button type="button" hidden={this.state.logged} className="btn btn-info float-right" data-toggle="modal" data-target="#createModal">
               Create Login
             </button>
+
+            {/* <button type="button" className="btn btn-info float-right" onClick={() => this.handleClick} >
+              Change State
+            </button> */}
+
+            {/* <button type="button" className="btn btn-info float-right" onClick={() => this.checkState()} >
+              Check State
+            </button> */}
 
             <div className="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
               aria-hidden="true">
@@ -85,7 +102,7 @@ class Nav extends React.Component {
                         <input type="password" name="password" />
                       </div>
                       <div>
-                        <input type="submit" onClick={this.handleClick} value="Create Login" />
+                        <input type="submit" value="Create Login" />
                       </div>
                     </form>
                   </div>
@@ -101,7 +118,7 @@ class Nav extends React.Component {
                 <div className="modal-content">
                   <div className="modal-header">
                     <h5 className="modal-title" id="exampleModalLabel">Login</h5>
-                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" data-dismiss="modal" className="close" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
@@ -116,7 +133,7 @@ class Nav extends React.Component {
                         <input type="password" name="password" />
                       </div>
                       <div>
-                        <input type="submit" onClick={this.handleClick} value="Log In" />
+                        <input type="submit" value="Log In" />
                       </div>
                     </form>
                   </div>

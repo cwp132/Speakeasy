@@ -58,17 +58,22 @@ app.post('/create', function (req, res) {
 })
 
 app.post('/login',
-    passport.authenticate('local', { failureRedirect: '/logins' }),
+    passport.authenticate('local', { failureRedirect: '/' }),
     function (req, res) {
-        res.redirect("/");
+        res.redirect('/');
+
     });
 
-app.get('/logout', (req, res) => {
+app.get('/logged', function (req, res) {
+    res.send(req.user)
+})
+
+app.get('/logout', function (req, res) {
     console.log('------------------');
     console.log("logging out......");
     console.log("------------------");
-    req.logout();
     res.redirect('/');
+    req.logout();
 });
 
 app.listen(PORT, function () {
