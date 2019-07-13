@@ -1,4 +1,5 @@
-#measureList {
+
+#measureList, #ingredientsList {
   list-style: none;
 }
 .modal-content {

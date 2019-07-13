@@ -13,15 +13,18 @@ class Results extends Component {
         return <div className="row">
           {this.props.drinks.map((drink, index) => {
             return (
-              <Drink drink={drink} key={drink.id} />
+              <Drink handleData={this.props.handleData} searchedInfo={this.props.searchedInfo} drink={drink} key={index} />
             )
           })}
         </div>
       case "searchByIngredient":
         return <div className="row">
           {this.props.drinks.map((drink, index) => {
+
+            console.log(this.props)
             return (
-              <Drink drink={drink} key={drink.id} />
+
+              <Drink handleData={this.props.handleData} searchedInfo={this.props.searchedInfo} drink={drink} key={index} />
             )
           })}
         </div>
@@ -42,7 +45,8 @@ class Results extends Component {
         return <div className="row">
           {this.props.drinks.map((drink, index) => {
             return (
-              <Drink drink={drink} key={drink.id} />
+              <Drink handleData={this.props.handleData} searchedInfo={this.props.searchedInfo} drink={drink} key={index} />
+
             )
           })}
 
@@ -52,7 +56,7 @@ class Results extends Component {
         return <div className="row">
           {this.props.drinks.map((drink, index) => {
             return (
-              <Drink drink={drink} key={drink.id} />
+              <Drink drink={drink} key={index} />
             )
           })}
         </div>
