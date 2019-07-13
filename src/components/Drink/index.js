@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import "./style.css";
 
 class Drink extends Component {
-
-
   render() {
     const { searchedInfo } = this.props
     return (
@@ -20,6 +18,7 @@ class Drink extends Component {
                     <div className="col-md-12">
                       <h1 className="text-center">{this.props.searchedInfo.title}</h1>
                     </div>
+
                   </div>
                   <div className="row">
                     <div className="col-md-3 d-flex justify-content-center">
@@ -50,7 +49,6 @@ class Drink extends Component {
                       </div>
 
                     </div>
-
 
                     <div className="col-md-3">
                       <div className="row">

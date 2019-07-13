@@ -2,32 +2,23 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const PORT = process.env.PORT || 3002;
+var session = require("express-session");
+var bodyParser = require("body-parser");
 var db = require('./models');
-// parse application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-var passport = require('passport')
-    , LocalStrategy = require('passport-local').Strategy;
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+require('dotenv').config();
+
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
-}
-// // Add routes, both API and view
-// // app.use(routes);
-
-var session = require("express-session"),
-    bodyParser = require("body-parser");
+};
 
 app.use(express.static("public"));
-app.use(session({ secret: "cats" }));
+app.use(session({ secret: process.env.SERVER_SECRET }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
-
-// app.get('/', function (req, res) {
-//     res.sendFile(path.join(__dirname + '/test/index.html'));
-// });
-
-// Connect to the Mongo DB
+app.use(express.json());
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/CocktailDB", { useNewUrlParser: true });
 
 passport.use(new LocalStrategy(
@@ -63,47 +54,28 @@ passport.deserializeUser(function (id, done) {
 app.post('/create', function (req, res) {
     console.log(req.body);
     db.User.create({ user_name: req.body.username, password: req.body.password })
-        .then(function (req, res) {
-            console.log(req);
-        })
-        .catch(function (err) {
-            console.log(err);
-        })
-})
-
-app.get('/isLogged', (req, res) => {
-    res.send(req.user);
-    // console.log(req.user);
+    res.redirect('/');
 })
 
 app.post('/login',
-    passport.authenticate('local', { failureRedirect: '/logins' }),
+    passport.authenticate('local', { failureRedirect: '/' }),
     function (req, res) {
-        res.redirect("/");
+        res.redirect('/');
+
     });
 
-app.get('/logout', (request, response) => {
-    console.log("logging out......")
-    request.logout();
-    response.redirect('/asdfgh');
-    console.log(request.user);
+app.get('/logged', function (req, res) {
+    res.send(req.user)
+})
+
+app.get('/logout', function (req, res) {
+    console.log('------------------');
+    console.log("logging out......");
+    console.log("------------------");
+    res.redirect('/');
+    req.logout();
 });
 
-// function isLoggedIn(request, response, next) {
-//     // passport adds this to the request object
-//     if (request.isAuthenticated()) {
-//         return next();
-//     }
-//     response.redirect('/login');
-// }
-
-// app.get('/login', isLoggedIn, (request, response) => {
-//     // console.log(request);
-//     console.log(response);
-// });
-
-
-// Start the API server
 app.listen(PORT, function () {
     console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
