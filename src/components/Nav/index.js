@@ -29,8 +29,6 @@ class Nav extends React.Component {
     this.checkState();
   }
 
-
-
   checkState = (e) => {
     axios.get('/logged')
       .then((req, res) => {
@@ -61,7 +59,9 @@ class Nav extends React.Component {
         <ul className="nav">
 
           <li className="nav-item">
+
             <button type="button" hidden={this.state.logged} className="btn btn-info" data-toggle="modal" data-target="#loginModal">
+
               Log In
             </button>
 
@@ -70,6 +70,7 @@ class Nav extends React.Component {
             </button>
 
             <button type="button" hidden={this.state.logged} className="btn btn-info" data-toggle="modal" data-target="#createModal">
+
               Create Login
             </button>
 

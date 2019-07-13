@@ -63,6 +63,7 @@ passport.deserializeUser(function (id, done) {
 
 app.post('/create', function (req, res) {
     console.log(req.body);
+
     let password = req.body.password;
     const encPass = crypto.createHmac('sha256', process.env.SHA_SECRET)
         .update(password)
@@ -71,6 +72,7 @@ app.post('/create', function (req, res) {
     db.User.create({ user_name: req.body.username, password: encPass })
     res.redirect('/');
 });
+
 
 app.post('/login',
     passport.authenticate('local', { failureRedirect: '/' }),
@@ -83,12 +85,14 @@ app.get('/logged', function (req, res) {
     res.send(req.user)
 });
 
+
 app.get('/logout', function (req, res) {
     console.log('------------------');
     console.log("logging out......");
     console.log("------------------");
     req.logout();
     res.redirect('/');
+
 });
 
 app.listen(PORT, function () {
