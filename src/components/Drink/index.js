@@ -1,7 +1,24 @@
 import React from 'react';
+import db from "../../models/index"
+import axios from "axios"
+
+
+
+function addFav(drink){
+  // console.log(drink)
+  
+  // db.User.findOne({user_name:"new"})
+  // .then(function(res){
+  //   console.log(res)
+  // })
+  axios.post("/favorite",{drink:drink})
+}
 
 function Drink(props) {
-
+  var buttonStyle = {
+    margin:"10px",
+    borderRadius:"50px"
+  }
   return (
     <div className="col-lg-4 col-md-6 col-sm-12 p-3" id={props.drink.id}>
       <h4 className="text-center">{props.drink.title}</h4>
@@ -36,7 +53,15 @@ function Drink(props) {
                   <div className="col-md-4 d-flex justify-content-center">
                     <p>{props.drink.instructions}</p>
                   </div>
+ 
+                </div>
+                <div className="row">
+                  <div className="col-md-11">
 
+                  </div>
+                  <div className="col-md-1">
+                    <button style={buttonStyle} className="btn btn-danger" onClick={()=>addFav(props.drink)}><i class="fas fa-heart" ></i></button>
+                  </div>
                 </div>
               </div>
             </div>

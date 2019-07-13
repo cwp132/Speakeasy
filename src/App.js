@@ -4,6 +4,7 @@ import { Container } from "./components/Grid";
 import Search from "./components/Search";
 import Results from './components/Results';
 import API from "./utils/API";
+import Nav from "./components/Nav/index.js"
 
 class App extends Component {
 

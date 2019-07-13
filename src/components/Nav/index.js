@@ -1,36 +1,33 @@
 import React from "react";
 import axios from 'axios';
+import db from "../../models"
 class Nav extends React.Component {
-  // state = { isloggedIn: false };
-
-  // This binding is necessary to make `this` work in the callback
-  // this.handleClick = this.handleClick.bind(this);
 
 
-  logOut = (event) => {
-    event.preventDefault();
-    axios.get('/logout')
-      .then(function (res, req) {
+  // logOut = (event) => {
+  //   event.preventDefault();
+  //   axios.get('/logout')
+  //     .then(function (res, req) {
 
-      })
-      .catch(function (err) {
-        console.log(err);
-      })
-  }
+  //     })
+  //     .catch(function (err) {
+  //       console.log(err);
+  //     })
+  // }
 
-  getUser = () => {
-    // Make a request for a user with a given ID
-    this.event.preventDefault();
-    axios.get('/login')
-      .then(function (res, req) {
+  // getUser = () => {
+  //   // Make a request for a user with a given ID
+  //   this.event.preventDefault();
+  //   axios.get('/login')
+  //     .then(function (res, req) {
 
-        console.log(req.session);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-  }
+  //       console.log(req.session);
+  //     })
+  //     .catch(function (error) {
+  //       // handle error
+  //       console.log(error);
+  //     })
+  // }
 
   // isLoggedIn = () => {
   //   axios.get('/isLogged')
@@ -48,6 +45,12 @@ class Nav extends React.Component {
   //       console.log(err);
   //     })
   // }
+  // clickHandle = (user,password) => {
+  //   axios.post("/create",{
+
+  //   })
+  // }
+  
 
   render() {
 
@@ -61,7 +64,7 @@ class Nav extends React.Component {
               Log In
             </button>
 
-            <button type="button" onClick={this.state.isLoggedIn} className="btn btn-info float-right">
+            <button type="button" onClick={this.isLoggedIn} className="btn btn-info float-right">
               Check log status
             </button>
 
@@ -84,7 +87,7 @@ class Nav extends React.Component {
                     </button>
                   </div>
                   <div className="modal-body">
-                    <form action="/create" method="post">
+                    <form action="/create" method="POST">
                       <div>
                         <label>Username:</label>
                         <input type="text" name="username" />
@@ -94,7 +97,7 @@ class Nav extends React.Component {
                         <input type="password" name="password" />
                       </div>
                       <div>
-                        <input type="submit" onClick={this.handleClick} value="Create Login" />
+                        <input type="submit" value="Create Login" />
                       </div>
                     </form>
                   </div>
