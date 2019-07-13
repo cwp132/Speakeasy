@@ -13,9 +13,46 @@ class App extends Component {
     search: "",
     searchBy: "",
     drinkArray: [],
-    // searchedDrink: "",
-    // searchedInfo: [],
+    searchedDrink: "",
+    searchedInfo: "",
     error: ""
+  }
+
+  handleData = event => {
+    this.setState({ searchedDrink: event.target.alt })
+    console.log(this.state.searchedDrink, event.target.alt)
+    event.preventDefault();
+    API.modalSearchByName(event.target.alt)
+      .then((res) => {
+
+        if (res.data.drinks === "error") {
+          throw new Error(res.data.drinks);
+        } else {
+          let results = res.data.drinks[0]
+
+          var newresults = {
+            id: results.idDrink,
+            title: results.strDrink,
+            img: results.strDrinkThumb,
+            instructions: results.strInstructions,
+            ingredientsArr: [results.strIngredient1, results.strIngredient2, results.strIngredient3, results.strIngredient4,
+            results.strIngredient5, results.strIngredient6, results.strIngredient7, results.strIngredient8, results.strIngredient9,
+            results.strIngredient10],
+            measureArr: [results.strMeasure1, results.strMeasure2, results.strMeasure3, results.strMeasure4,
+            results.strMeasure5, results.strMeasure6, results.strMeasure7, results.strMeasure8, results.strMeasure9,
+            results.strIngredient10]
+
+          }
+          console.log(results, newresults)
+          this.setState({ searchedInfo: newresults, error: "" })
+
+        }
+      })
+      .catch(err => this.setState({ error: err.items }));
+
+    //if the state matches the event.arget.value no search is needed
+
+    // else if state does not match event target hit the api
   }
 
   isLoggedIn = () => {
@@ -59,17 +96,9 @@ class App extends Component {
               results = results.map(result => {
                 //store each book information in a new object 
                 result = {
-                  key: result.idDrink,
                   id: result.idDrink,
                   title: result.strDrink,
-                  img: result.strDrinkThumb,
-                  instructions: result.strInstructions,
-                  ingredientsArr: [result.strIngredient1, result.strIngredient2, result.strIngredient3, result.strIngredient4,
-                  result.strIngredient5, result.strIngredient6, result.strIngredient7, result.strIngredient8, result.strIngredient9,
-                  result.strIngredient10],
-                  measureArr: [result.strMeasure1, result.strMeasure2, result.strMeasure3, result.strMeasure4,
-                  result.strMeasure5, result.strMeasure6, result.strMeasure7, result.strMeasure8, result.strMeasure9,
-                  result.strIngredient10]
+                  img: result.strDrinkThumb
                 }
                 return result;
               })
@@ -121,17 +150,10 @@ class App extends Component {
                 //store each book information in a new object 
 
                 result = {
-                  key: result.idDrink,
                   id: result.idDrink,
                   title: result.strDrink,
                   img: result.strDrinkThumb,
-                  instructions: result.strInstructions,
-                  ingredientsArr: [result.strIngredient1, result.strIngredient2, result.strIngredient3, result.strIngredient4,
-                  result.strIngredient5, result.strIngredient6, result.strIngredient7, result.strIngredient8, result.strIngredient9,
-                  result.strIngredient10],
-                  measureArr: [result.strMeasure1, result.strMeasure2, result.strMeasure3, result.strMeasure4,
-                  result.strMeasure5, result.strMeasure6, result.strMeasure7, result.strMeasure8, result.strMeasure9,
-                  result.strIngredient10]
+
                 }
                 return result;
               })
@@ -155,17 +177,9 @@ class App extends Component {
               results = results.map(result => {
                 //store each book information in a new object 
                 result = {
-                  key: result.idDrink,
                   id: result.idDrink,
                   title: result.strDrink,
-                  img: result.strDrinkThumb,
-                  instructions: result.strInstructions,
-                  ingredientsArr: [result.strIngredient1, result.strIngredient2, result.strIngredient3, result.strIngredient4,
-                  result.strIngredient5, result.strIngredient6, result.strIngredient7, result.strIngredient8, result.strIngredient9,
-                  result.strIngredient10],
-                  measureArr: [result.strMeasure1, result.strMeasure2, result.strMeasure3, result.strMeasure4,
-                  result.strMeasure5, result.strMeasure6, result.strMeasure7, result.strMeasure8, result.strMeasure9,
-                  result.strIngredient10]
+                  img: result.strDrinkThumb
                 }
                 return result;
               })
@@ -188,17 +202,9 @@ class App extends Component {
               results = results.map(result => {
                 //store each book information in a new object 
                 result = {
-                  key: result.idDrink,
                   id: result.idDrink,
                   title: result.strDrink,
-                  img: result.strDrinkThumb,
-                  instructions: result.strInstructions,
-                  ingredientsArr: [result.strIngredient1, result.strIngredient2, result.strIngredient3, result.strIngredient4,
-                  result.strIngredient5, result.strIngredient6, result.strIngredient7, result.strIngredient8, result.strIngredient9,
-                  result.strIngredient10],
-                  measureArr: [result.strMeasure1, result.strMeasure2, result.strMeasure3, result.strMeasure4,
-                  result.strMeasure5, result.strMeasure6, result.strMeasure7, result.strMeasure8, result.strMeasure9,
-                  result.strIngredient10]
+                  img: result.strDrinkThumb
                 }
                 return result;
               })
@@ -223,11 +229,12 @@ class App extends Component {
         <Nav />
 
         <h1 className="text-center m-5"><b>SpeakEasy</b></h1>
-
-        <Search handleFormSubmit={this.handleFormSubmit} handleInputChange={this.handleInputChange} handleSelectChange={this.handleSelectChange} />
+        <Container>
+          <Search handleFormSubmit={this.handleFormSubmit} handleInputChange={this.handleInputChange} handleSelectChange={this.handleSelectChange} />
+        </Container>
 
         <Container>
-          <Results drinks={this.state.drinkArray} searchBy={this.state.searchBy} />
+          <Results drinks={this.state.drinkArray} searchBy={this.state.searchBy} handleData={this.handleData} searchedInfo={this.state.searchedInfo} />
         </Container>
 
       </div >
