@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const PORT = process.env.PORT || 3002;
+const crypto = require('crypto');
 var session = require("express-session");
 var bodyParser = require("body-parser");
 var db = require('./models');
@@ -23,14 +24,18 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://user1:password1@ds125628.
 
 passport.use(new LocalStrategy(
     function (username, password, done) {
-        console.log(username + " " + password)
+        console.log(username + " " + password);
+        const encPass = crypto.createHmac('sha256', process.env.SHA_SECRET)
+            .update(password)
+            .digest('hex');
+        console.log(password);
         db.User.findOne({ user_name: username }, function (err, user) {
             if (err) { return done(err); }
             if (!user) {
                 console.log("incorrect");
                 return done(null, false, { message: 'Incorrect username.' });
             }
-            if (user.password !== password) {
+            if (user.password !== encPass) {
                 console.log("wrong");
                 return done(null, false, { message: 'Incorrect password.' });
             }
@@ -40,6 +45,11 @@ passport.use(new LocalStrategy(
         });
     }
 ));
+
+const hash = crypto.createHmac('sha256', process.env.SHA_SECRET)
+    .update('blah')
+    .digest('hex');
+console.log(hash);
 
 passport.serializeUser(function (user, done) {
     done(null, user._id);
@@ -53,9 +63,16 @@ passport.deserializeUser(function (id, done) {
 
 app.post('/create', function (req, res) {
     console.log(req.body);
-    db.User.create({ user_name: req.body.username, password: req.body.password })
+
+    let password = req.body.password;
+    const encPass = crypto.createHmac('sha256', process.env.SHA_SECRET)
+        .update(password)
+        .digest('hex');
+    console.log(password);
+    db.User.create({ user_name: req.body.username, password: encPass })
     res.redirect('/');
-})
+});
+
 
 app.post('/login',
     passport.authenticate('local', { failureRedirect: '/' }),
@@ -66,14 +83,16 @@ app.post('/login',
 
 app.get('/logged', function (req, res) {
     res.send(req.user)
-})
+});
+
 
 app.get('/logout', function (req, res) {
     console.log('------------------');
     console.log("logging out......");
     console.log("------------------");
-    res.redirect('/');
     req.logout();
+    res.redirect('/');
+
 });
 
 app.listen(PORT, function () {
