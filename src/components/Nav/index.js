@@ -1,5 +1,6 @@
 import React from "react";
 import axios from 'axios';
+import "./style.css";
 class Nav extends React.Component {
   constructor(props) {
     super(props)
@@ -61,15 +62,15 @@ class Nav extends React.Component {
         <ul className="nav">
 
           <li className="nav-item">
-            <button type="button" hidden={this.state.logged} className="btn btn-info float-right" data-toggle="modal" data-target="#loginModal">
+            <button type="button" hidden={this.state.logged} className="btn text-body mr-3" data-toggle="modal" data-target="#loginModal">
               Log In
             </button>
 
-            <button type="button" onClick={this.logOut} hidden={this.state.logOut} id="logout" className="btn btn-info float-right" >
+            <button type="button" onClick={this.logOut} hidden={this.state.logOut} id="logout" className="btn text-body mr-3" >
               log out
             </button>
 
-            <button type="button" hidden={this.state.logged} className="btn btn-info float-right" data-toggle="modal" data-target="#createModal">
+            <button type="button" hidden={this.state.logged} className="btn text-body mr-3" data-toggle="modal" data-target="#createModal">
               Create Login
             </button>
 
