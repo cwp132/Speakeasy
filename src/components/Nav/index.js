@@ -15,7 +15,7 @@ class Nav extends React.Component {
     event.preventDefault();
     axios.get('/logout')
       .then(function (res, req) {
-
+        window.location.reload();
       })
       .catch(function (err) {
         console.log(err);
@@ -29,8 +29,6 @@ class Nav extends React.Component {
   componentDidMount = (e) => {
     this.checkState();
   }
-
-
 
   checkState = (e) => {
     axios.get('/logged')
@@ -63,6 +61,7 @@ class Nav extends React.Component {
 
           <li className="nav-item">
             <button type="button" hidden={this.state.logged} className="btn text-body mr-3" data-toggle="modal" data-target="#loginModal">
+
               Log In
             </button>
 
@@ -71,6 +70,7 @@ class Nav extends React.Component {
             </button>
 
             <button type="button" hidden={this.state.logged} className="btn text-body mr-3" data-toggle="modal" data-target="#createModal">
+
               Create Login
             </button>
 
