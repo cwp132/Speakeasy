@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT;
 const crypto = require('crypto');
 var session = require("express-session");
 var bodyParser = require("body-parser");
@@ -11,8 +11,9 @@ var LocalStrategy = require('passport-local').Strategy;
 require('dotenv').config();
 
 if (process.env.NODE_ENV === "production") {
+
     app.use(express.static("build"));
-};
+
 
 app.use(express.static("public"));
 app.use(session({ secret: process.env.SERVER_SECRET }));
