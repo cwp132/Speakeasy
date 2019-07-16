@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 80;
 const crypto = require('crypto');
 var session = require("express-session");
 var bodyParser = require("body-parser");
