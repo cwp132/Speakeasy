@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "heroku-postbuild": "cd public && npm install && node server.js",
+    "heroku-postbuild": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "server": "nodemon server.js",
