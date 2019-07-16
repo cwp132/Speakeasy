@@ -3,7 +3,7 @@ import "./style.css";
 
 function Search(props) {
   return (
-    <div className="backgroundRow p-5 m-5">
+    <div className="backgroundRow py-5 my-5">
       <div className="container my-4">
         <div className="row">
           <div className="col-md-2">

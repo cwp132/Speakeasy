@@ -10,7 +10,7 @@ function Jumbotron(props) {
       <p className="lead">A cocktail app to look up and try new drinks! You can search by name or ingredient! click on the drink to
       get all the ingredients, measurements, and instructions</p>
       <hr className="" />
-      <p>Get logged in so you can save some of you favorite drinks!</p>
+      <p>Get logged in so you can save some of your favorite drinks!</p>
       <Nav />
     </div>
   )
