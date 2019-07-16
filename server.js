@@ -14,7 +14,8 @@ if (process.env.NODE_ENV === "production") {
 
     app.use(express.static("build"));
 
-
+};
+    
 app.use(express.static("public"));
 app.use(session({ secret: process.env.SERVER_SECRET }));
 app.use(bodyParser.urlencoded({ extended: false }));
