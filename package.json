@@ -2,6 +2,10 @@
   "name": "speakeasy",
   "version": "0.1.0",
   "private": true,
+  "main": "server.js",
+  "engines": {
+    "node": "11.1.0"
+  },
   "proxy": "http://localhost:3002",
   "dependencies": {
     "axios": "^0.19.0",
@@ -16,8 +20,9 @@
     "react-scripts": "3.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
+    "start": "node server.js",
+    "heroku-postbuild": "node server.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -37,7 +42,6 @@
     ]
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "index.js",
   "devDependencies": {},
   "author": "cwp132 <44931480+cwp132@users.noreply.github.com>",
   "license": "ISC"

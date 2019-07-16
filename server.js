@@ -21,7 +21,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
 mongoose.connect(process.env.MONGODB_URI || "mongodb://user1:password1@ds125628.mlab.com:25628/heroku_r702533l", { useNewUrlParser: true });
-
+// mongodb://localhost/CocktailDB
 passport.use(new LocalStrategy(
     function (username, password, done) {
         console.log(username + " " + password);
