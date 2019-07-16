@@ -10,9 +10,9 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 require('dotenv').config();
 
-// if (process.env.NODE_ENV === "production") {
-//     app.use(express.static("client/build"));
-// };
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+};
 
 app.use(express.static("public"));
 app.use(session({ secret: process.env.SERVER_SECRET }));
