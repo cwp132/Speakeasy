@@ -1,6 +1,4 @@
-import React from "react";
-import "./style.css"
-import axios from "axios"
+import React, { Component } from "react";
 
 function addFav(drink){
 //   console.log(drink)
@@ -17,74 +15,73 @@ var buttonStyle = {
         borderRadius:"50px"
       }
 
-function Modal(props) {
-    return <div>
-        {props.searchedInfo.map((searchedInfo) => {
-            return (
-                <div className={`modal fade modal-${props.searchedInfo.id}`} tabIndex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                    <div className="modal-dialog modal-xl">
-                        <div className="modal-content">
-                            <div className="container p-4">
-                                <div className="row">
-                                    <div className="col-md-12">
-                                        <h1 className="text-center">{props.searchedInfo.title}</h1>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-3 d-flex justify-content-center">
-                                        <img src={props.searchedInfo.img} alt={props.searchedInfo.title} />
-                                    </div>
+class Modal extends Component {
+  render() {
+    const { searchedInfo } = this.props
 
-                                    <div className="col-md-3">
-                                        <h4>Ingredients</h4>
-                                        <div className="row">
-                                            <ul>
-                                                {props.searchedInfo.ingredientsArr.map((ingredient, index) => {
-                                                    if (ingredient === "") {
-                                                        return (<></>)
-                                                    } else {
-                                                        return (
-                                                            <li key={index}> {ingredient}</li>
-                                                        )
-                                                    }
+    return (
+      <div className="modal-dialog modal-xl">
+        <div className="modal-content p-4">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12">
+                <h1 className="text-center">{this.props.searchedInfo.title}</h1>
+              </div>
 
-                                                })}
-                                            </ul>
-                                        </div>
+            </div>
+            <div className="row">
+              <div className="col-md-3 d-flex justify-content-center">
+                <img src={this.props.searchedInfo.img} alt={this.props.searchedInfo.title} />
+              </div>
 
-                                    </div>
-                                    <div className="col-md-3">
-                                        <div className="row">
-                                            <h4>Measurements</h4>
-                                        </div>
-                                        <div className="row">
-                                            <ul id="measureList">
-                                                {props.searchedInfo.measureArr.map((measure, index) => {
-                                                    if (measure === " ") {
-                                                        return (<></>)
-                                                    } else if (measure === "↵") {
-                                                        return (<></>)
-                                                    } else if (measure === "") {
-                                                        return (<></>)
-                                                    } else {
-                                                        return (
-                                                            <li key={index}>{measure}</li>
-                                                        )
-                                                    }
+              <div className="col-md-3">
+                <div className="row">
+                  <div className="col-md-12 d-flex justify-content-center">
+                    <h4 className="text-center"><u>Ingredients</u></h4>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-12 d-flex justify-content-center">
+                    <div id="ingredientsList">
+                      {searchedInfo && searchedInfo.ingredientsArr.map((ingredient, index) => {
 
-                                                })}
-                                            </ul>
-                                        </div>
+                        if (ingredient === "") {
+                          return (<></>)
+                        } else {
+                          return (
+                            <div className="text-center" key={index}> {ingredient}</div>
+                          )
+                        }
+                      })}
+                    </div>
+                  </div>
+                </div>
 
-                                    </div>
+              </div>
 
-                                    <div className="col-md-3 ">
-                                        <div className="row">
-                                            <h4>Instructions</h4>
-                                            <p>{props.searchedInfo.instructions}</p>
-                                        </div>
-                                    </div>
+              <div className="col-md-3">
+                <div className="row">
+                  <div className="col-md-12 d-flex justify-content-center">
+                    <h4><u>Measurements</u></h4>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-12 d-flex justify-content-center">
+                    <div id="measureList">
+                      {searchedInfo && searchedInfo.measureArr.map((measure, index) => {
+                        if (measure === " ") {
+                          return (<></>)
+                        } else if (measure === "↵") {
+                          return (<></>)
+                        } else if (measure === "") {
+                          return (<></>)
+                        } else {
+                          return (
+                            <div className="text-center" key={index}>{measure}</div>
+                          )
+                        }
 
+<<<<<<< HEAD
                                 </div>
                                 <div className="row">
                                     <div className="col-md-11"></div>
@@ -96,10 +93,32 @@ function Modal(props) {
                                 </div>
                             </div>
                         </div>
+=======
+                      })}
+>>>>>>> master
                     </div>
+                  </div>
                 </div>
-            )
-        })}
-    </div>
+              </div>
+
+              <div className="col-md-3">
+                <div className="row">
+                  <div className="col-md-12 d-flex justify-content-center">
+                    <h4><u>Instuctions</u></h4>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-12 d-flex justify-content-center">
+                    <p className="text-center">{this.props.searchedInfo.instructions}</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 }
 export default Modal;

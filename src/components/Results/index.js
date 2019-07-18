@@ -10,7 +10,7 @@ class Results extends Component {
   render() {
     switch (this.props.searchBy) {
       case "searchByName":
-        return <div className="row mb-5">
+        return <div className="row">
           {this.props.drinks.map((drink, index) => {
             return (
               <Drink handleData={this.props.handleData} searchedInfo={this.props.searchedInfo} drink={drink} key={index} />
@@ -18,7 +18,7 @@ class Results extends Component {
           })}
         </div>
       case "searchByIngredient":
-        return <div className="row mb-5">
+        return <div className="row">
           {this.props.drinks.map((drink, index) => {
 
             console.log(this.props)
@@ -30,7 +30,7 @@ class Results extends Component {
         </div>
 
       case "searchIngredientByName":
-        return <div className="row mb-5">
+        return <div className="row">
           {this.props.drinks.map((drink, index) => {
             return (
               <div className="col-lg-12 col-md-12 col-sm-12 p-3" id={drink.id} key={index}>
@@ -42,7 +42,7 @@ class Results extends Component {
         </div>
 
       case "random":
-        return <div className="row mb-5">
+        return <div className="row">
           {this.props.drinks.map((drink, index) => {
             return (
               <Drink handleData={this.props.handleData} searchedInfo={this.props.searchedInfo} drink={drink} key={index} />
@@ -53,7 +53,7 @@ class Results extends Component {
         </div>
 
       case "favorites":
-        return <div className="row mb-5">
+        return <div className="row">
           {this.props.drinks.map((drink, index) => {
             return (
               <Drink drink={drink} key={index} />
@@ -61,10 +61,8 @@ class Results extends Component {
           })}
         </div>
       default:
-        return <div className="row mb-5">
-          <div className="col-md-12 text-center">
-            <h1>Search for some Great Drinks!</h1>
-          </div>
+        return <div className="col-md-12 text-center">
+          <h1>Search for some Great Drinks!</h1>
         </div>
 
     }

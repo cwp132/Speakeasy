@@ -15,8 +15,15 @@
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
   },
+  "engines": {
+    "node": "11.1.0"
+  },
+  "engines": {
+    "node": "11.1.0"
+  },
   "scripts": {
-    "start": "react-scripts start && nodemon server.js",
+    "start": "node server.js",
+    "heroku-postbuild": "npm run build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "server": "nodemon server.js",
@@ -38,19 +45,7 @@
     ]
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "index.js",
   "devDependencies": {},
   "author": "cwp132 <44931480+cwp132@users.noreply.github.com>",
-  "license": "ISC",
-  "directories": {
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cwp132/Speakeasy.git"
-  },
-  "bugs": {
-    "url": "https://github.com/cwp132/Speakeasy/issues"
-  },
-  "homepage": "https://github.com/cwp132/Speakeasy#readme"
+  "license": "ISC"
 }
