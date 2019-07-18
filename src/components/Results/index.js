@@ -2,10 +2,16 @@ import React, { Component } from "react";
 import "./style.css"
 // import { Container } from "../Grid";
 import Drink from "../Drink";
-
+import axios from "axios"
 
 class Results extends Component {
 
+  getFavs () {
+    axios.get("/favorite")
+    .then(function(res){
+      console.log(res)
+    })
+  }
 
   render() {
     switch (this.props.searchBy) {
@@ -53,15 +59,13 @@ class Results extends Component {
         </div>
 
       case "favorites":
+
         return <div className="row">
-          {this.props.drinks.map((drink, index) => {
-            return (
-              <Drink drink={drink} key={index} />
-            )
-          })}
+          
         </div>
       default:
         return <div className="col-md-12 text-center">
+        {this.getFavs()}
           <h1>Search for some Great Drinks!</h1>
         </div>
 

@@ -1,24 +1,20 @@
 import React, { Component } from "react";
+import axios from "axios"
 
-function addFav(drink){
-//   console.log(drink)
-  
-//   db.User.findOne({user_name:"new"})
-//   .then(function(res){
-//     console.log(res)
-//   })
-  axios.post("/favorite",{drink:drink})
-}
 
-var buttonStyle = {
-        margin:"10px",
-        borderRadius:"50px"
-      }
+
 
 class Modal extends Component {
-  render() {
-    const { searchedInfo } = this.props
+    addFav = (drink) => {
+    axios.post("/favorite",{drink:drink})
+    }
 
+    render() {
+    const { searchedInfo } = this.props
+    const buttonStyle = {
+      margin:"10px",
+      borderRadius:"50px"
+    }
     return (
       <div className="modal-dialog modal-xl">
         <div className="modal-content p-4">
@@ -81,21 +77,7 @@ class Modal extends Component {
                           )
                         }
 
-<<<<<<< HEAD
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-11"></div>
-                                    <div className="col-md-1">
-                                        {/* <button className="btn btn-danger button" onClick={()=>addFav(props.drink)}><i class="fas fa-heart" ></i></button>
-                                        <button>poop</button> */}
-                                        <h2>hello</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-=======
                       })}
->>>>>>> master
                     </div>
                   </div>
                 </div>
@@ -110,6 +92,12 @@ class Modal extends Component {
                 <div className="row">
                   <div className="col-md-12 d-flex justify-content-center">
                     <p className="text-center">{this.props.searchedInfo.instructions}</p>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-11"></div>
+                  <div className="col-md-1">
+                    <button style={buttonStyle} className="btn btn-dark" onClick={()=>this.addFav(this.props.searchedInfo)}><i class="fas fa-heart" ></i></button>
                   </div>
                 </div>
               </div>

@@ -19,6 +19,40 @@ class App extends Component {
     error: ""
   }
 
+  getFavs () {
+    axios.get("/favorite")
+    .then((res)=>{
+      this.favLoop(res.data)
+    })
+  }
+
+  favLoop = (array) => {
+    array.map((x,i)=>{
+        API.favorites(x)
+          .then((res) => {
+            console.log(res.data.drinks[0])
+            return <h1>{}</h1>
+            // if (res.data.drinks === "error") {
+            //   throw new Error(res.data.drinks);
+            // } else {
+            //   let results = res.data.drinks
+            //   results = results.map(result => {
+            //     //store each book information in a new object 
+            //     result = {
+            //       id: result.idDrink,
+            //       title: result.strDrink,
+            //       img: result.strDrinkThumb
+            //     }
+            //     return result;
+            //   })
+            //   this.setState({ drinkArray: results, error: "" })
+            // }
+          })
+          .catch(err => this.setState({ error: err.items }));
+        // console.log(this.state.drinkArray)
+    })
+  }
+
   handleData = event => {
     this.setState({ searchedDrink: event.target.alt })
     console.log(this.state.searchedDrink, event.target.alt)
@@ -225,28 +259,10 @@ class App extends Component {
         break;
 
       case "favorites":
-        event.preventDefault();
-        API.favorites()
-          .then((res) => {
-            console.log(res)
-            if (res.data.drinks === "error") {
-              throw new Error(res.data.drinks);
-            } else {
-              let results = res.data.drinks
-              results = results.map(result => {
-                //store each book information in a new object 
-                result = {
-                  id: result.idDrink,
-                  title: result.strDrink,
-                  img: result.strDrinkThumb
-                }
-                return result;
-              })
-              this.setState({ drinkArray: results, error: "" })
-            }
-          })
-          .catch(err => this.setState({ error: err.items }));
-        console.log(this.state.drinkArray)
+        event.preventDefault()
+        console.log("this is being hit")
+        this.getFavs()
+        // this.favLoop(req.user.favorites)
         break;
 
       default:
@@ -267,7 +283,7 @@ class App extends Component {
         </Container>
 
         <Container>
-          <Results drinks={this.state.drinkArray} searchBy={this.state.searchBy} handleData={this.handleData} searchedInfo={this.state.searchedInfo} />
+          <Results drinks={this.state.drinkArray} searchBy={this.state.searchBy} handleData={this.handleData} searchedInfo={this.state.searchedInfo} user={this.state.user} />
         </Container>
 
         <Footer />

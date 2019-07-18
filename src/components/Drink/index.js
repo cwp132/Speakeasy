@@ -24,26 +24,8 @@ import "./style.css";
 
 class Drink extends Component {
   addFav = (drink)=>{
-      // console.log(drink)
-      
-      // db.User.findOne({user_name:"new"})
-      // .then(function(res){
-      //   console.log(res)
-      // })
-      console.log(this.props.handleData)
       axios.post("/favorite",{drink:drink})
     }
-
-
-    render() {
-
-    const { searchedInfo } = this.props
-
-    var buttonStyle = {
-      margin:"10px",
-      borderRadius:"50px"
-    }
-
 
   render() {
     // const { searchedInfo } = this.props
@@ -61,8 +43,6 @@ class Drink extends Component {
       </div>
     )
   }
-}
-
-
+  }
 
 export default Drink

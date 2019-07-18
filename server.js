@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 3002;
 const crypto = require('crypto');
 var session = require("express-session");
 var bodyParser = require("body-parser");
@@ -62,6 +62,12 @@ passport.deserializeUser(function (id, done) {
     });
 });
 
+
+app.get("/favorite",function(req,res){
+    // console.log("poop")
+    res.send(req.user.favorites)
+})
+
 //favorite add/ remove route
 //route runs when favorite button is clicked
 app.post("/favorite",function(req,res){
@@ -89,8 +95,6 @@ app.post("/favorite",function(req,res){
         
         if(favInd === -1){
 
-            // console.log(newFav.indexOf(drinkId))
-
             newFav.push(drinkId)
             console.log(`drink id has been added \nnew fav array: ${newFav}`)
             db.User.updateOne({user_name:currentUser},{favorites:newFav},function(err,res){
@@ -103,11 +107,6 @@ app.post("/favorite",function(req,res){
                 console.log(res)
             })
         }
-        // var new_fav = res.favorites
-        // new_fav.push(req.body.drink.id)
-        // db.User.update({user_name:currentUser},{favorites:new_fav},function(err,res){
-        //     console.log(res)
-        // })
     })   
 })
 
