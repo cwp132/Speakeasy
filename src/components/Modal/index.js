@@ -1,5 +1,21 @@
 import React from "react";
+import "./style.css"
+import axios from "axios"
 
+function addFav(drink){
+//   console.log(drink)
+  
+//   db.User.findOne({user_name:"new"})
+//   .then(function(res){
+//     console.log(res)
+//   })
+  axios.post("/favorite",{drink:drink})
+}
+
+var buttonStyle = {
+        margin:"10px",
+        borderRadius:"50px"
+      }
 
 function Modal(props) {
     return <div>
@@ -69,6 +85,14 @@ function Modal(props) {
                                         </div>
                                     </div>
 
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-11"></div>
+                                    <div className="col-md-1">
+                                        {/* <button className="btn btn-danger button" onClick={()=>addFav(props.drink)}><i class="fas fa-heart" ></i></button>
+                                        <button>poop</button> */}
+                                        <h2>hello</h2>
+                                    </div>
                                 </div>
                             </div>
                         </div>

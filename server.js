@@ -1,23 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-<<<<<<< HEAD
-const db = require('./src/models');
-const passport = require('passport') ;
-const session = require("express-session")
-// parse application/x-www-form-urlencoded
-const bodyParser = require("body-parser");
-const LocalStrategy = require('passport-local').Strategy
-
-const PORT = process.env.PORT || 3002;
-
-// Connect to the Mongo DB
-mongoose.connect( "mongodb://localhost/CocktailDB", { useNewUrlParser: true });
-
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client/build"));
-}
-=======
 const PORT = process.env.PORT || 3002;
 const crypto = require('crypto');
 var session = require("express-session");
@@ -30,7 +13,6 @@ require('dotenv').config();
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 };
->>>>>>> master
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -39,11 +21,8 @@ app.use(session({ secret: process.env.SERVER_SECRET }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
-<<<<<<< HEAD
-=======
 app.use(express.json());
-mongoose.connect(process.env.MONGODB_URI || "mongodb://user1:password1@ds125628.mlab.com:25628/heroku_r702533l", { useNewUrlParser: true });
->>>>>>> master
+mongoose.connect("mongodb://localhost:27017/CocktailDB", { useNewUrlParser: true });
 
 passport.use(new LocalStrategy(
     function (username, password, done) {
@@ -86,34 +65,47 @@ passport.deserializeUser(function (id, done) {
 //favorite add/ remove route
 //route runs when favorite button is clicked
 app.post("/favorite",function(req,res){
+
     //holds drink id from current drink
+    var drink = req.body.drink
+    var currentUser = req.user.user_name
     var drinkId = req.body.drink.id
+
+
     //queries database for user, needs to be changed to the current user
-    db.User.findOne({user_name:"new"},function(err,res){
+
+    db.User.findOne({user_name:currentUser},function(err,res){
+
         //stores user's favorite array
+
         var newFav = res.favorites
-        console.log("======================")
-        console.log(newFav)
-        console.log(newFav.indexOf(drinkId))
-        // if drink id is in array holds index else returns -1
         var favInd = newFav.indexOf(drinkId)
+
+        console.log("======================")
+        console.log(`current favorites: ${newFav}`)
+        console.log(`favorite check: ${favInd}`)
+        console.log(`drink:${drink.title}`)
+        // if drink id is in array holds index else returns -1
+        
         if(favInd === -1){
+
             // console.log(newFav.indexOf(drinkId))
+
             newFav.push(drinkId)
-            console.log(newFav)
-            db.User.update({user_name:"new"},{favorites:newFav},function(err,res){
+            console.log(`drink id has been added \nnew fav array: ${newFav}`)
+            db.User.updateOne({user_name:currentUser},{favorites:newFav},function(err,res){
                 console.log(res)
             })
         }else{
-            newFav.splice(newFav.indexOf(drinkId))
-            console.log(newFav)
-            db.User.update({user_name:"new"},{favorites:newFav},function(err,res){
+            newFav.splice(newFav.indexOf(drinkId),1)
+            console.log(`drink id has been removed\nnew fav array: ${newFav}`)
+            db.User.updateOne({user_name:currentUser},{favorites:newFav},function(err,res){
                 console.log(res)
             })
         }
         // var new_fav = res.favorites
         // new_fav.push(req.body.drink.id)
-        // db.User.update({user_name:"new"},{favorites:new_fav},function(err,res){
+        // db.User.update({user_name:currentUser},{favorites:new_fav},function(err,res){
         //     console.log(res)
         // })
     })   
@@ -121,28 +113,6 @@ app.post("/favorite",function(req,res){
 
 app.post('/create', function (req, res) {
     console.log(req.body);
-<<<<<<< HEAD
-    db.User.create({ user_name: req.body.username, password: req.body.password })
-        .then(function (res) {
-            console.log(res);
-        })
-})
-
-app.get("/test", function (req, res) {
-    console.log(req.body);
-    console.log(db);
-    
-    db.User.findOne({user_name:"new"})
-    .then(function(res){
-    console.log(res)
-  })
-})
-
-app.get('/isLogged', (req, res) => {
-    res.send(req.user);
-    // console.log(req.user);
-})
-=======
 
     let password = req.body.password;
     const encPass = crypto.createHmac('sha256', process.env.SHA_SECRET)
@@ -153,7 +123,6 @@ app.get('/isLogged', (req, res) => {
     res.redirect('/');
 });
 
->>>>>>> master
 
 app.post('/login',
     passport.authenticate('local', { failureRedirect: '/' }),
@@ -166,10 +135,6 @@ app.get('/logged', function (req, res) {
     res.send(req.user)
 });
 
-<<<<<<< HEAD
-app.get('/express_backend', (req, res) => {
-    res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
-=======
 
 app.get('/logout', function (req, res) {
     console.log('------------------');
@@ -178,7 +143,6 @@ app.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/');
 
->>>>>>> master
 });
 
 app.listen(PORT, function () {
