@@ -7,7 +7,7 @@ class Drink extends Component {
   render() {
     // const { searchedInfo } = this.props
     return (
-      <div className="col-lg-4 col-md-6 col-sm-12 py-3" id={this.props.drink.id} key={this.props.drink.id}>
+      <div className="col-lg-3 col-md-5 col-sm-12 py-4 m-4 drinkDiv" id={this.props.drink.id} key={this.props.drink.id}>
         <h4 className="text-center">{this.props.drink.title}</h4>
         <div className="d-flex justify-content-center">
           <img src={this.props.drink.img} alt={this.props.drink.title} onClick={this.props.handleData} data-toggle="modal" data-target={`.modal-${this.props.drink.id}`} />
