@@ -8,4 +8,4 @@ SpeakEasy is a React.js based web app, supplying you with fantastic drink ideas 
 * Bootstrap
 * Font Awesome
 
-![Main page](https://github.com/cwp132/Speakeasy/blob/master/images/speakeasyfront.png)
+![Main page](https://github.com/cwp132/Speakeasy/blob/master/Images/speakeasyv2.png)
