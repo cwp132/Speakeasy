@@ -14,6 +14,7 @@ class Results extends Component {
   }
 
   render() {
+    console.log(this.props.drinks)
     switch (this.props.searchBy) {
       case "searchByName":
         return <div className="row">
@@ -61,13 +62,18 @@ class Results extends Component {
       case "favorites":
 
         return <div className="row">
-          
+          {this.props.drinks.map((drink, index) => {
+            return (
+              <Drink handleData={this.props.handleData} searchedInfo={this.props.searchedInfo} drink={drink} key={index} />
+
+            )
+          })}
         </div>
       default:
-        return <div className="col-md-12 text-center">
-        {this.getFavs()}
-          <h1>Search for some Great Drinks!</h1>
-        </div>
+        return  (
+          <div></div>
+        )
+        
 
     }
   }

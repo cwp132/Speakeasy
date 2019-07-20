@@ -28,6 +28,7 @@ class Drink extends Component {
     }
 
   render() {
+    // console.log(this.props.drink)
     // const { searchedInfo } = this.props
     return (
       <div className="col-lg-4 col-md-6 col-sm-12 py-3" id={this.props.drink.id} key={this.props.drink.id}>
