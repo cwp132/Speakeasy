@@ -18,9 +18,6 @@
   "engines": {
     "node": "11.1.0"
   },
-  "engines": {
-    "node": "11.1.0"
-  },
   "scripts": {
     "start": "react-scripts start",
     "heroku-postbuild": "npm run build",
