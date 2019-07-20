@@ -1,10 +1,34 @@
+
+import axios from "axios"
 import React, { Component } from "react";
 import Modal from "../Modal";
 import "./style.css";
 
+
+// function addFav(drink){
+//   // console.log(drink)
+  
+//   // db.User.findOne({user_name:"new"})
+//   // .then(function(res){
+//   //   console.log(res)
+//   // })
+//   axios.post("/favorite",{drink:drink})
+// }
+
+// function Drink(props) {
+//   var buttonStyle = {
+//     margin:"10px",
+//     borderRadius:"50px"
+//   }
+
+
 class Drink extends Component {
+  addFav = (drink)=>{
+      axios.post("/favorite",{drink:drink})
+    }
 
   render() {
+    // console.log(this.props.drink)
     // const { searchedInfo } = this.props
     return (
       <div className="col-lg-3 col-md-5 col-sm-12 py-4 m-4 drinkDiv" id={this.props.drink.id} key={this.props.drink.id}>
@@ -20,7 +44,6 @@ class Drink extends Component {
       </div>
     )
   }
-}
-
+  }
 
 export default Drink

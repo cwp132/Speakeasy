@@ -1,10 +1,20 @@
 import React, { Component } from "react";
+import axios from "axios"
+
+
 
 
 class Modal extends Component {
-  render() {
-    const { searchedInfo } = this.props
+    addFav = (drink) => {
+    axios.post("/favorite",{drink:drink})
+    }
 
+    render() {
+    const { searchedInfo } = this.props
+    const buttonStyle = {
+      margin:"10px",
+      borderRadius:"50px"
+    }
     return (
       <div className="modal-dialog modal-xl">
         <div className="modal-content p-4">
@@ -82,6 +92,12 @@ class Modal extends Component {
                 <div className="row">
                   <div className="col-md-12 d-flex justify-content-center">
                     <p className="text-center">{this.props.searchedInfo.instructions}</p>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-11"></div>
+                  <div className="col-md-1">
+                    <button style={buttonStyle} className="btn btn-dark" onClick={()=>this.addFav(this.props.searchedInfo)}><i class="fas fa-heart" ></i></button>
                   </div>
                 </div>
               </div>

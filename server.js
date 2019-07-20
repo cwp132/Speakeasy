@@ -20,6 +20,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
+// mongoose.connect("mongodb://localhost:27017/CocktailDB", { useNewUrlParser: true });
+
 mongoose.connect(process.env.MONGODB_URI || `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@ds125628.mlab.com:25628/heroku_r702533l`, { useNewUrlParser: true });
 // mongodb://localhost/CocktailDB
 passport.use(new LocalStrategy(
@@ -40,7 +42,6 @@ passport.use(new LocalStrategy(
                 return done(null, false, { message: 'Incorrect password.' });
             }
             console.log("success");
-            // console.log(user);
             return done(null, user);
         });
     }
@@ -60,6 +61,54 @@ passport.deserializeUser(function (id, done) {
         done(err, user);
     });
 });
+
+
+app.get("/favorite",function(req,res){
+    // console.log("poop")
+    res.send(req.user.favorites)
+})
+
+//favorite add/ remove route
+//route runs when favorite button is clicked
+app.post("/favorite",function(req,res){
+
+    //holds drink id from current drink
+    var drink = req.body.drink
+    var currentUser = req.user.user_name
+    var drinkId = req.body.drink.id
+
+
+    //queries database for user, needs to be changed to the current user
+
+    db.User.findOne({user_name:currentUser},function(err,res){
+
+        //stores user's favorite array
+
+        var newFav = res.favorites
+        var favInd = newFav.indexOf(drinkId)
+
+        console.log("======================")
+        console.log(`current favorites: ${newFav}`)
+        console.log(`favorite check: ${favInd}`)
+        console.log(`drink:${drink.title}`)
+        // if drink id is in array holds index else returns -1
+        
+        if(favInd === -1){
+
+            newFav.push(drinkId)
+            console.log(`drink id has been added \nnew fav array: ${newFav}`)
+            db.User.updateOne({user_name:currentUser},{favorites:newFav},function(err,res){
+                console.log(res)
+            })
+        }else{
+            newFav.splice(newFav.indexOf(drinkId),1)
+            console.log(`drink id has been removed\nnew fav array: ${newFav}`)
+            db.User.updateOne({user_name:currentUser},{favorites:newFav},function(err,res){
+                console.log(res)
+            })
+        }
+    })   
+})
 
 app.post('/create', function (req, res) {
     console.log(req.body);

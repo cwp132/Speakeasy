@@ -2,12 +2,19 @@ import React, { Component } from "react";
 import "./style.css"
 // import { Container } from "../Grid";
 import Drink from "../Drink";
-
+import axios from "axios"
 
 class Results extends Component {
 
+  getFavs () {
+    axios.get("/favorite")
+    .then(function(res){
+      console.log(res)
+    })
+  }
 
   render() {
+    console.log(this.props.drinks)
     switch (this.props.searchBy) {
       case "searchByName":
         return <div className="row d-flex justify-content-center">
@@ -56,14 +63,16 @@ class Results extends Component {
         return <div className="row d-flex justify-content-center">
           {this.props.drinks.map((drink, index) => {
             return (
-              <Drink drink={drink} key={index} />
+              <Drink handleData={this.props.handleData} searchedInfo={this.props.searchedInfo} drink={drink} key={index} />
+
             )
           })}
         </div>
       default:
-        return <div className="col-md-12 text-center">
-          <h1>Search for some Great Drinks!</h1>
-        </div>
+        return  (
+          <div></div>
+        )
+        
 
     }
   }
