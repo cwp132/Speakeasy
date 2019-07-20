@@ -42,7 +42,6 @@ class Nav extends React.Component {
         console.log(error);
       })
   }
-
   render() {
 
     return (
@@ -84,7 +83,7 @@ class Nav extends React.Component {
                     </button>
                   </div>
                   <div className="modal-body">
-                    <form action="/create" method="post">
+                    <form action="/create" method="POST">
                       <div>
                         <label>Username:</label>
                         <input type="text" name="username" />

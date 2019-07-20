@@ -7,6 +7,7 @@ import API from "./utils/API";
 import Jumbotron from "./components/Jumbotron";
 import Footer from "./components/Footer";
 import axios from 'axios';
+import { log } from "util";
 
 class App extends Component {
 
@@ -18,6 +19,70 @@ class App extends Component {
     searchedInfo: "",
     error: ""
   }
+
+  getFavs () {
+   
+    axios.get("/favorite")
+    .then((res)=>{
+      
+      this.returnFavOb(res.data,(res)=>{
+        
+        let results = res
+
+        let strippedResults = results.map((obj)=>{
+          let newFavOb = {
+            id: obj.idDrink,
+            title: obj.strDrink,
+            img: obj.strDrinkThumb
+          }
+          return newFavOb
+        })
+        // console.log(strippedResults)
+        console.log(strippedResults)
+        // return strippedResults
+        this.setState({ drinkArray: strippedResults,error:""})
+        console.log(this.state.drinkArray)
+        // return strippedResults
+      })
+    })
+    console.log(this.state.drinkArray)
+  }
+  
+  
+
+  returnFavOb = (array,cb) => {
+    let result = []
+    array.map((x,i)=>{
+      API.favorites(x)
+        .then((res) => {
+          if (res.data.drinks === "error") {
+              throw new Error(res.data.drinks);
+            }else{
+              result.push(res.data.drinks[0])
+            }          
+        }).then(()=>{
+          // console.log(result)
+          cb(result)
+          } 
+        )
+    })
+    // (res)=>{
+    //   let results = res
+    //   results = results.map(result => {
+    //   //store each book information in a new object 
+    //   result = {
+    //     id: result.idDrink,
+    //     title: result.strDrink,
+    //     img: result.strDrinkThumb
+    //   }
+    //   return result;
+    //   })
+    //   this.setState({ drinkArray: results, error: "" })
+    // })
+    // console.log(this.state.drinkArray)
+  }
+    
+  
 
   handleData = event => {
     this.setState({ searchedDrink: event.target.alt })
@@ -180,28 +245,11 @@ class App extends Component {
         break;
 
       case "favorites":
-        event.preventDefault();
-        API.favorites()
-          .then((res) => {
-            console.log(res)
-            if (res.data.drinks === "error") {
-              throw new Error(res.data.drinks);
-            } else {
-              let results = res.data.drinks
-              results = results.map(result => {
-                //store each book information in a new object 
-                result = {
-                  id: result.idDrink,
-                  title: result.strDrink,
-                  img: result.strDrinkThumb
-                }
-                return result;
-              })
-              this.setState({ drinkArray: results, error: "" })
-            }
-          })
-          .catch(err => this.setState({ error: err.items }));
-        console.log(this.state.drinkArray)
+        event.preventDefault()
+        
+        this.getFavs()
+        // this.setState({drinkArray:drinks})
+        // this.favLoop(req.user.favorites)
         break;
 
       default:
@@ -222,7 +270,7 @@ class App extends Component {
         </Container>
 
         <Container>
-          <Results drinks={this.state.drinkArray} searchBy={this.state.searchBy} handleData={this.handleData} searchedInfo={this.state.searchedInfo} />
+          <Results drinks={this.state.drinkArray} searchBy={this.state.searchBy} handleData={this.handleData} searchedInfo={this.state.searchedInfo} user={this.state.user} />
         </Container>
 
         <Footer />
