@@ -22,10 +22,6 @@ class Nav extends React.Component {
       })
   }
 
-  // handleClick(event) {
-  //   this.checkState();
-  // };
-
   componentDidMount = (e) => {
     this.checkState();
   }
@@ -40,24 +36,12 @@ class Nav extends React.Component {
         } else {
           console.log('not logged')
         }
-        // console.log(req.data);
       })
       .catch(function (error) {
         // handle error
         console.log(error);
       })
   }
-
-  // getUser = (event) => {
-
-  // }
-  // clickHandle = (user,password) => {
-  //   axios.post("/create",{
-
-  //   })
-  // }
-  
-
   render() {
 
     return (
