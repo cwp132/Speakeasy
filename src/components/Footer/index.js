@@ -42,7 +42,7 @@ function Footer(props) {
           <div className="row">
             <div className="col-md-12">
               <h5 className="text-center">Stephan Falcon</h5>
-              <p className="text-center">Email</p>
+              <p className="text-center">hoobaloob99@gmail.com</p>
             </div>
           </div>
           <div className="row">

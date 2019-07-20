@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import "./style.css"
-// import { Container } from "../Grid";
 import Drink from "../Drink";
 
 
 class Results extends Component {
-
 
   render() {
     switch (this.props.searchBy) {
@@ -20,10 +18,7 @@ class Results extends Component {
       case "searchByIngredient":
         return <div className="row d-flex justify-content-center">
           {this.props.drinks.map((drink, index) => {
-
-            console.log(this.props)
             return (
-
               <Drink handleData={this.props.handleData} searchedInfo={this.props.searchedInfo} drink={drink} key={index} />
             )
           })}
@@ -49,7 +44,6 @@ class Results extends Component {
 
             )
           })}
-
         </div>
 
       case "favorites":
@@ -64,7 +58,6 @@ class Results extends Component {
         return <div className="col-md-12 text-center">
           <h1>Search for some Great Drinks!</h1>
         </div>
-
     }
   }
 }
