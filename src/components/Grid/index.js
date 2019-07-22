@@ -2,7 +2,12 @@ import React from "react";
 
 // Exporting the Container, Row, and Col components from this file
 export function Container({ fluid, children }) {
-  return <div className={`container${fluid ? "-fluid" : ""}`}>{children}</div>;
+  // const style = {
+  //   backgroundImage: "linear-gradient(transparent,red)"
+  // }
+  return <div className={`container${fluid ? "-fluid" : ""}`} >
+  {children}
+  </div>;
 }
 
 export function Row({ fluid, children }) {

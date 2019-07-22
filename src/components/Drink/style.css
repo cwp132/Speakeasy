@@ -1,7 +1,12 @@
 
 .drinkDiv {
-  background-color: red;
+  background-image:linear-gradient(transparent,red,red);
+  border-radius: 10px;
 }
 .modal-content {
   background-color: red;
+}
+.img{
+  border-radius: 10px;
+  background-size: 100%
 }
