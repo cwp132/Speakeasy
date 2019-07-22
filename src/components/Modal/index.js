@@ -1,14 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios"
 
-
-
-
 class Modal extends Component {
     addFav = (drink) => {
     axios.post("/favorite",{drink:drink})
     }
-
     render() {
     const { searchedInfo } = this.props
     const buttonStyle = {
@@ -23,13 +19,11 @@ class Modal extends Component {
               <div className="col-md-12">
                 <h1 className="text-center">{this.props.searchedInfo.title}</h1>
               </div>
-
             </div>
             <div className="row">
               <div className="col-md-3 d-flex justify-content-center">
                 <img src={this.props.searchedInfo.img} alt={this.props.searchedInfo.title} />
               </div>
-
               <div className="col-md-3">
                 <div className="row">
                   <div className="col-md-12 d-flex justify-content-center">
@@ -52,7 +46,6 @@ class Modal extends Component {
                     </div>
                   </div>
                 </div>
-
               </div>
 
               <div className="col-md-3">
@@ -82,7 +75,6 @@ class Modal extends Component {
                   </div>
                 </div>
               </div>
-
               <div className="col-md-3">
                 <div className="row">
                   <div className="col-md-12 d-flex justify-content-center">
@@ -101,7 +93,6 @@ class Modal extends Component {
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>

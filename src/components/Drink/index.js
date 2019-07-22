@@ -47,11 +47,9 @@ class Drink extends Component {
           <div className={`modal fade modal-${this.props.drink.id}`} tabIndex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
             <Modal searchedInfo={this.props.searchedInfo} key={this.props.searchedInfo.id} />
           </div>
-
         </div>
       </div>
     )
   }
-  }
-
+}
 export default Drink
