@@ -17,9 +17,9 @@ function Footer(props) {
           </div>
           <div className="row">
             <div className="col-md-12 d-flex justify-content-center">
-              <a href="https://github.com/Larrabee55" target="_blank" rel="noopener noreferrer" className="mx-3 fa fa-github-square"></a>
+              <a href="https://github.com/Larrabee55" target="_blank" rel="noopener noreferrer" className="mx-3 fab fa-github-square"></a>
               <a href="https://www.linkedin.com/in/cameron-larrabee-25a363177/" target="_blank" rel="noopener noreferrer"
-                className="mx-3 fa fa-linkedin-square"></a>
+                className="mx-3 fab fa-linkedin-square"></a>
             </div>
           </div>
         </div>
@@ -32,9 +32,9 @@ function Footer(props) {
           </div>
           <div className="row">
             <div className="col-md-12 d-flex justify-content-center">
-              <a href="https://github.com/cwp132" target="_blank" rel="noopener noreferrer" className="mx-3 fa fa-github-square"></a>
+              <a href="https://github.com/cwp132" target="_blank" rel="noopener noreferrer" className="mx-3 fab fa-github-square"></a>
               <a href="https://www.linkedin.com/in/christian-petersen-33198a174/" target="_blank" rel="noopener noreferrer"
-                className="mx-3 fa fa-linkedin-square"></a>
+                className="mx-3 fab fa-linkedin-square"></a>
             </div>
           </div>
         </div>
@@ -47,9 +47,9 @@ function Footer(props) {
           </div>
           <div className="row">
             <div className="col-md-12 d-flex justify-content-center">
-              <a href="https://github.com/stephanfalcon" target="_blank" rel="noopener noreferrer" className="mx-3 fa fa-github-square"></a>
+              <a href="https://github.com/stephanfalcon" target="_blank" rel="noopener noreferrer" className="mx-3 fab fa-github-square"></a>
               <a href="https://www.linkedin.com/in/stephan-falcon-23033514a/" target="_blank" rel="noopener noreferrer"
-                className="mx-3 fa fa-linkedin-square"></a>
+                className="mx-3 fab fa-linkedin-square"></a>
             </div>
           </div>
         </div>
