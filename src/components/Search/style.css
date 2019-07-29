@@ -3,3 +3,8 @@
   background-position: center;
   background-size: cover;
 }
+
+.srchBtn:hover{
+  background-color:black;
+  color:white;
+}
