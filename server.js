@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 80;
 const crypto = require('crypto');
 var session = require("express-session");
 var bodyParser = require("body-parser");
@@ -20,9 +20,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
-mongoose.connect("mongodb://localhost:27017/CocktailDB", { useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost:27017/CocktailDB", { useNewUrlParser: true });
 
-// mongoose.connect(process.env.MONGODB_URI || `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@ds125628.mlab.com:25628/heroku_r702533l`, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@ds125628.mlab.com:25628/heroku_r702533l`, { useNewUrlParser: true });
 // mongodb://localhost/CocktailDB
 passport.use(new LocalStrategy(
     function (username, password, done) {
