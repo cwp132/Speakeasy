@@ -12,7 +12,7 @@ class Modal extends Component {
       borderRadius: "50px"
     }
     return (
-      <div className="modal-dialog modal-xl">
+      <div className="modal-dialog modal-xl drinkDiv" >
         <div className="modal-content p-4">
           <div className="container">
             <div className="row">

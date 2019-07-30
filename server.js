@@ -72,42 +72,48 @@ app.get("/favorite",function(req,res){
 //route runs when favorite button is clicked
 app.post("/favorite",function(req,res){
 
-    //holds drink id from current drink
-    var drink = req.body.drink
-    var currentUser = req.user.user_name
-    var drinkId = req.body.drink.id
+    if (req.user == undefined){
+        document.alert("please sign in to add favorites.")
+        console.log("poop")
+    }else{
+
+        //holds drink id from current drink
+        var drink = req.body.drink
+        var currentUser = req.user.user_name
+        var drinkId = req.body.drink.id
 
 
-    //queries database for user, needs to be changed to the current user
+        //queries database for user, needs to be changed to the current user
 
-    db.User.findOne({user_name:currentUser},function(err,res){
+        db.User.findOne({user_name:currentUser},function(err,res){
 
-        //stores user's favorite array
+            //stores user's favorite array
 
-        var newFav = res.favorites
-        var favInd = newFav.indexOf(drinkId)
+            var newFav = res.favorites
+            var favInd = newFav.indexOf(drinkId)
 
-        console.log("======================")
-        console.log(`current favorites: ${newFav}`)
-        console.log(`favorite check: ${favInd}`)
-        console.log(`drink:${drink.title}`)
-        // if drink id is in array holds index else returns -1
-        
-        if(favInd === -1){
+            console.log("======================")
+            console.log(`current favorites: ${newFav}`)
+            console.log(`favorite check: ${favInd}`)
+            console.log(`drink:${drink.title}`)
+            // if drink id is in array holds index else returns -1
+            
+            if(favInd === -1){
 
-            newFav.push(drinkId)
-            console.log(`drink id has been added \nnew fav array: ${newFav}`)
-            db.User.updateOne({user_name:currentUser},{favorites:newFav},function(err,res){
-                console.log(res)
-            })
-        }else{
-            newFav.splice(newFav.indexOf(drinkId),1)
-            console.log(`drink id has been removed\nnew fav array: ${newFav}`)
-            db.User.updateOne({user_name:currentUser},{favorites:newFav},function(err,res){
-                console.log(res)
-            })
-        }
-    })   
+                newFav.push(drinkId)
+                console.log(`drink id has been added \nnew fav array: ${newFav}`)
+                db.User.updateOne({user_name:currentUser},{favorites:newFav},function(err,res){
+                    console.log(res)
+                })
+            }else{
+                newFav.splice(newFav.indexOf(drinkId),1)
+                console.log(`drink id has been removed\nnew fav array: ${newFav}`)
+                db.User.updateOne({user_name:currentUser},{favorites:newFav},function(err,res){
+                    console.log(res)
+                })
+            }
+        })
+    }   
 })
 
 app.post('/create', function (req, res) {

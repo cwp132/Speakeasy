@@ -24,7 +24,7 @@ function Search(props) {
                   </select>
                 </div>
               </div>
-              <button type="submit" className="btn btn-md btn-block" onClick={props.handleFormSubmit}>Search</button>
+              <button type="submit" className="btn btn-md btn-block srchBtn" onClick={props.handleFormSubmit}>Search</button>
             </form>
           </div>
         </div>

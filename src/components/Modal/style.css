@@ -3,3 +3,13 @@
     margin:"10px";
     border-radius:"50px";
 }
+.img{
+    border-radius: 10px;
+    background-size: 100%
+  }
+.drinkDiv {
+  background-image:linear-gradient(transparent,red,red);
+  border-radius: 10px;
+
+}
+

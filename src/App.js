@@ -85,9 +85,12 @@ class App extends Component {
   
 
   handleData = event => {
-    this.setState({ searchedDrink: event.target.alt })
+    this.setState({ searchedDrink: event.target.dataset.title })
+    console.log(this.state.searchedDrink, event.target.dataset.title)
+
+    // this.searchData()
     event.preventDefault();
-    API.modalSearchByName(event.target.alt)
+    API.modalSearchByName(event.target.dataset.title)
       .then((res) => {
 
         if (res.data.drinks === "error") {
