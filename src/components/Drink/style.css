@@ -25,7 +25,6 @@
 .drinkDiv:hover{
   /* background-image:linear-gradient(transparent,purple,purple); */
   border-radius:100px;
-  color:red;
 }
 
 .img:hover{
