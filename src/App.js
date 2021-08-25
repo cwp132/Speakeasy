@@ -9,6 +9,7 @@ import Jumbotron from "./components/Jumbotron";
 import Footer from "./components/Footer";
 import axios from 'axios';
 import { log } from "util";
+import "./style.css"
 
 class App extends Component {
 
@@ -297,21 +298,23 @@ class App extends Component {
   render() {
     return (
       <>
-        <Nav/>
+        <div id="main-container">
+          <Nav/>
 
-        <Container>
-          <Jumbotron />
-        </Container>
+          <Container>
+            <Jumbotron />
+          </Container>
 
-        <Container>
-          <Search handleFormSubmit={this.handleFormSubmit} handleInputChange={this.handleInputChange} handleSelectChange={this.handleSelectChange} searchMount={this.searchMount}/>
-        </Container>
+          <Container>
+            <Search handleFormSubmit={this.handleFormSubmit} handleInputChange={this.handleInputChange} handleSelectChange={this.handleSelectChange} searchMount={this.searchMount}/>
+          </Container>
 
-        <Container>
-          <Results drinks={this.state.drinkArray} searchBy={this.state.searchBy} handleData={this.handleData} searchedInfo={this.state.searchedInfo} user={this.state.user} />
-        </Container>
+          <Container>
+            <Results drinks={this.state.drinkArray} searchBy={this.state.searchBy} handleData={this.handleData} searchedInfo={this.state.searchedInfo} user={this.state.user} />
+          </Container>
+        </div>
 
-        <Footer />
+          <Footer />
       </>
     );
   }
