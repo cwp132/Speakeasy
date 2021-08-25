@@ -5,7 +5,7 @@ import "./style.css"
 function Footer(props) {
 
   return (
-    <div className="footer m-3 p-3">
+    <div className="footer p-3">
       <h2 className="text-center display-4 mb-3">Developers</h2>
       <div className="row">
         <div className="col-md-4">

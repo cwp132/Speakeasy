@@ -45,9 +45,11 @@ class Nav extends React.Component {
   render() {
 
     return (
-      < div >
+      <div className="nav-container">
 
-        <ul className="nav">
+        <h1 className="title">SpeakEasy</h1>
+
+        <ul className="nav-button">
 
           <li className="nav-item">
             <button type="button" hidden={this.state.logged} className="btn text-body mr-3" data-toggle="modal" data-target="#loginModal">

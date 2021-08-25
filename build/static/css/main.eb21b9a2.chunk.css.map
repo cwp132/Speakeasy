@@ -1,1 +1,0 @@
-{"version":3,"sources":["style.css"],"names":[],"mappings":"AAAA,eACE,2DAAyC,CACzC,uBAA2B,CAC3B,qBACF,CAJA,IACE,WAAY,CACZ,YACF,CAFA,8BACE,eACF,CAHA,oBACE,oBACF,CAFA,WACE,qBACF,CAFA,QACE,oBACF,CACA,IACE,cAAc,CACd,UACF","file":"main.eb21b9a2.chunk.css","sourcesContent":[".footer {\n  background-color: red;\n}\n.fa {\n  font-size:48px;\n  color:black\n}"]}

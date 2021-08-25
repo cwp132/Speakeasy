@@ -14,7 +14,7 @@ class Results extends Component {
     console.log(this.props.drinks)
     switch (this.props.searchBy) {
       case "searchByName":
-        return <div className="row d-flex justify-content-center">
+        return <div className="row d-flex justify-content-center" id="results">
           {this.props.drinks.map((drink, index) => {
             return (
               <Drink handleData={this.props.handleData} searchedInfo={this.props.searchedInfo} drink={drink} key={index} />
@@ -22,7 +22,7 @@ class Results extends Component {
           })}
         </div>
       case "searchByIngredient":
-        return <div className="row d-flex justify-content-center">
+        return <div className="row d-flex justify-content-center" id="results">
           {this.props.drinks.map((drink, index) => {
             return (
               <Drink handleData={this.props.handleData} searchedInfo={this.props.searchedInfo} drink={drink} key={index} />
@@ -43,7 +43,7 @@ class Results extends Component {
         </div>
 
       case "random":
-        return <div className="row d-flex justify-content-center">
+        return <div className="row d-flex justify-content-center" id="results">
           {this.props.drinks.map((drink, index) => {
             return (
               <Drink handleData={this.props.handleData} searchedInfo={this.props.searchedInfo} drink={drink} key={index} />
@@ -53,7 +53,7 @@ class Results extends Component {
         </div>
 
       case "favorites":
-        return <div className="row d-flex justify-content-center">
+        return <div className="row d-flex justify-content-center" id="results">
           {this.props.drinks.map((drink, index) => {
             return (
               <Drink handleData={this.props.handleData} searchedInfo={this.props.searchedInfo} drink={drink} key={index} />

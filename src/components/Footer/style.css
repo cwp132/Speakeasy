@@ -1,5 +1,9 @@
 .footer {
   background-color: red;
+  position: absolute;
+  bottom:0px;
+  width: 100%;
+  margin:0px;
 }
 .fab {
   font-size:48px;

@@ -4,6 +4,7 @@ import { Container } from "./components/Grid";
 import Search from "./components/Search";
 import Results from './components/Results';
 import API from "./utils/API";
+import Nav from "./components/Nav"
 import Jumbotron from "./components/Jumbotron";
 import Footer from "./components/Footer";
 import axios from 'axios';
@@ -145,8 +146,13 @@ class App extends Component {
     this.setState({ searchBy: event.target.value, drinkArray: [] })
   }
 
+  searchMount = () =>{
+    this.setState({searchBy:"searchByName", drinkArray:[]})
+  }
+
 
   handleFormSubmit = event => {
+    event.preventDefault()
     switch (this.state.searchBy) {
       case "searchByName":
         event.preventDefault();
@@ -225,7 +231,11 @@ class App extends Component {
 
       case "random":
         event.preventDefault();
-        API.random()
+
+        let drinks = []
+
+        for(var i = 0; i < 15; i++){
+          API.random()
           .then((res) => {
             console.log(res)
             if (res.data.drinks === "error") {
@@ -238,13 +248,37 @@ class App extends Component {
                   title: result.strDrink,
                   img: result.strDrinkThumb
                 }
-                return result;
+                // return result;
+                drinks.push(result)
               })
-              this.setState({ drinkArray: results, error: "" })
+              // this.setState({ drinkArray: results, error: "" })
             }
+          console.log("poop")
+          console.log(drinks)
+          this.setState({ drinkArray: drinks, error: "" })
           })
-          .catch(err => this.setState({ error: err.items }));
-        console.log(this.state.drinkArray)
+        }
+        
+        // API.random()
+        //   .then((res) => {
+        //     console.log(res)
+        //     if (res.data.drinks === "error") {
+        //       throw new Error(res.data.drinks);
+        //     } else {
+        //       let results = res.data.drinks
+        //       results = results.map(result => {
+        //         result = {
+        //           id: result.idDrink,
+        //           title: result.strDrink,
+        //           img: result.strDrinkThumb
+        //         }
+        //         return result;
+        //       })
+        //       this.setState({ drinkArray: results, error: "" })
+        //     }
+        //   })
+        //   .catch(err => this.setState({ error: err.items }));
+        // console.log(this.state.drinkArray)
         break;
 
       case "favorites":
@@ -260,16 +294,17 @@ class App extends Component {
         break;
     }
   }
-
   render() {
     return (
       <>
+        <Nav/>
+
         <Container>
           <Jumbotron />
         </Container>
 
         <Container>
-          <Search handleFormSubmit={this.handleFormSubmit} handleInputChange={this.handleInputChange} handleSelectChange={this.handleSelectChange} />
+          <Search handleFormSubmit={this.handleFormSubmit} handleInputChange={this.handleInputChange} handleSelectChange={this.handleSelectChange} searchMount={this.searchMount}/>
         </Container>
 
         <Container>
