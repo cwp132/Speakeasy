@@ -10,8 +10,11 @@ import Footer from "./components/Footer";
 import axios from 'axios';
 import Analytics from "./components/analytics/index"
 import { log } from "util";
-import ReactGa from "react-ga"
+import ReactGA from "react-ga"
 import "./style.css"
+
+ReactGA.initialize('UA-205859239-1');
+ReactGA.pageview("/");
 
 // const analytics = () => {
 //   useEffect(()=>{
