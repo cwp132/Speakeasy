@@ -4,7 +4,7 @@ import ReactGa from "react-ga"
 const Analytics = () => {
 
     useEffect(()=>{
-        ReactGa.initialize("G-JG8TH5G9HV")
+        ReactGa.initialize("UA-205859239-1")
     
         ReactGa.pageview("/")
       },[])
