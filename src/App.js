@@ -1,5 +1,5 @@
 
-import React, { Component } from "react";
+import React, { Component, useEffect} from "react";
 import { Container } from "./components/Grid";
 import Search from "./components/Search";
 import Results from './components/Results';
@@ -8,8 +8,20 @@ import Nav from "./components/Nav"
 import Jumbotron from "./components/Jumbotron";
 import Footer from "./components/Footer";
 import axios from 'axios';
+import Analytics from "./components/analytics/index"
 import { log } from "util";
+import ReactGa from "react-ga"
 import "./style.css"
+
+// const analytics = () => {
+//   useEffect(()=>{
+//     ReactGa.initialize("G-JG8TH5G9HV")
+
+//     ReactGa.pageview("/")
+//   },[])
+//   return(<></>)
+// }
+
 
 class App extends Component {
 
@@ -295,10 +307,16 @@ class App extends Component {
         break;
     }
   }
+
+  
+  
   render() {
     return (
       <>
         <div id="main-container">
+          
+          <Analytics/>
+
           <Nav/>
 
           <Container>
