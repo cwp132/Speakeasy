@@ -8,12 +8,14 @@ var bodyParser = require("body-parser");
 var db = require('./models');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+const morgan = require("morgan")
 require('dotenv').config();
+mongoose.connect(process.env.MONGODB_URI || `mongodb+srv://${process.env.DB_USER}:${process.env.NEW_DB_PASS}@cluster0.42n5t.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, { useNewUrlParser: true , useUnifiedTopology: true});
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("build"));
 };
-
+app.use(morgan("tiny"))
 app.use(express.static("public"));
 app.use(session({ secret: process.env.SERVER_SECRET }));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -21,18 +23,19 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
 // mongoose.connect("mongodb://localhost:27017/CocktailDB", { useNewUrlParser: true });
-
-mongoose.connect(process.env.MONGODB_URI || `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@ds125628.mlab.com:25628/heroku_r702533l`, { useNewUrlParser: true });
+// `mongodb://${process.env.DB_USER}:${process.env.NEW_DB_PASS}@ds125628.mlab.com:25628/heroku_r702533l`
 // mongodb://localhost/CocktailDB
 passport.use(new LocalStrategy(
     function (username, password, done) {
-        console.log(username + " " + password);
+        // console.log(username + " " + password);
         const encPass = crypto.createHmac('sha256', process.env.SHA_SECRET)
             .update(password)
             .digest('hex');
-        console.log(password);
+        // console.log(password);
         db.User.findOne({ user_name: username }, function (err, user) {
-            if (err) { return done(err); }
+            if (err) { 
+                console.log("database error")
+                return done(err); }
             if (!user) {
                 console.log("incorrect");
                 return done(null, false, { message: 'Incorrect username.' });
@@ -62,6 +65,9 @@ passport.deserializeUser(function (id, done) {
     });
 });
 
+app.get("/", function(req,res){
+    res.sendFile("./index.html")
+})
 
 app.get("/favorite", function (req, res) {
     // console.log("poop")

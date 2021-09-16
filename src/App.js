@@ -9,9 +9,13 @@ import Jumbotron from "./components/Jumbotron";
 import Footer from "./components/Footer";
 import axios from 'axios';
 import Analytics from "./components/analytics/index"
-import { log } from "util";
+// import { log } from "util";
 import ReactGA from "react-ga"
 import "./style.css"
+
+// @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext')
+
+import "./font.css"
 
 ReactGA.initialize('UA-205859239-1');
 ReactGA.pageview("/");
@@ -38,14 +42,10 @@ class App extends Component {
   }
 
   getFavs () {
-   
     axios.get("/favorite")
-    .then((res)=>{
-      
+    .then((res)=>{      
       this.returnFavOb(res.data,(res)=>{
-        
         let results = res
-
         let strippedResults = results.map((obj)=>{
           let newFavOb = {
             id: obj.idDrink,
@@ -54,12 +54,9 @@ class App extends Component {
           }
           return newFavOb
         })
-        // console.log(strippedResults)
         console.log(strippedResults)
-        // return strippedResults
         this.setState({ drinkArray: strippedResults,error:""})
         console.log(this.state.drinkArray)
-        // return strippedResults
       })
     })
     console.log(this.state.drinkArray)
@@ -78,7 +75,6 @@ class App extends Component {
               result.push(res.data.drinks[0])
             }          
         }).then(()=>{
-          // console.log(result)
           cb(result)
           } 
         )
@@ -139,7 +135,6 @@ class App extends Component {
   isLoggedIn = () => {
     axios.get('/isLogged')
       .then(function (req, res) {
-        // console.log(req.user);
         console.log("=============")
         if (req.user !== null || undefined) {
           this.setState({ isLoggedIn: true });
