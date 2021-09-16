@@ -1,0 +1,29 @@
+
+.drinkDiv {
+  background-image:linear-gradient(transparent,red,red);
+  border-radius: 10px;
+  transition-duration:.75s;
+  color:black
+}
+.modal-content {
+  background-color: red;
+}
+.img{
+  border-radius: 10px;
+  background-size: 100%;
+  animation-name:imageAni;
+  animation-duration:1s;
+  transition-duration:.75s
+}
+
+@keyframes imageAni{
+  0%{
+    height:0px;
+  }
+}
+
+.drinkDiv:hover{
+  /* background-image:linear-gradient(transparent,purple,purple); */
+  border-radius:50px;
+  transition: .3s;
+}

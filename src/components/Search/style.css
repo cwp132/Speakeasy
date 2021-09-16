@@ -1,0 +1,15 @@
+.backgroundRow {
+  background-image: url("./searchBar3.jpg");
+  background-position: center;
+  background-size: cover;
+  padding:0px;
+  margin:auto;
+  display:flex;
+  height:200px;
+  
+}
+
+.srchBtn:hover{
+  background-color:black;
+  color:white;
+}
